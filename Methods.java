@@ -97,57 +97,62 @@ class GUI_setData extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        // try {
-        //     Scanner rf = new Scanner(new File("./pm2.5.txt"));
-        //     while (rf.hasNext()) {
-        //         ArrayList <Float> datas_row = new ArrayList<Float>();
-        //         for (String i:rf.nextLine().split("\t")) {
-        //             float f=Float.parseFloat(i); 
-        //             datas_row.add(f);
-        //         }
-        //         datas.add(datas_row);
-        //     }
-        // } catch (Exception e) {
-        //     System.out.println(e);
-        // }
-        // // System.out.println(datas);
-        // SwingUtilities.invokeLater(() -> {
-        //     JFrame frame = new JFrame();
-        //     frame.setTitle("set Data");
-        //     frame.setLayout(null);
-        //     frame.setBounds(50,50, 1280,720);
-        //     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
-        //     frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
-    
-        //     JPanel panelDatas = new JPanel();
-        //     panelDatas.setBounds(10, 50, 980, 600);
-        //     // panelDatas.setBackground(new Color(0, 255, 50));
-        //     panelDatas.setBorder(new LineBorder(Color.BLACK));
-        //     panelDatas.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
-        //     for(int i=0;i<datas.size();i++){
-        //         JPanel rowDatas = new JPanel();
-        //         rowDatas.setLayout(new GridLayout());
-        //         for(int j=0;j<datas.get(i).size();j++){
-        //             JButton button = new JButton();
-        //             button.setBounds(0,0,50,50);
-        //             button.setBackground(new Color(255,0,0));
-        //             rowDatas.add(button);
-        //         }
-        //         panelDatas.add(rowDatas);
-        //     }
-
-        //     frame.add(panelDatas);
-        //     frame.setVisible(true);
-        // });
+        try {
+            Scanner rf = new Scanner(new File("./pm2.5.txt"));
+            while (rf.hasNext()) {
+                ArrayList <Float> datas_row = new ArrayList<Float>();
+                for (String i:rf.nextLine().split("\t")) {
+                    float f=Float.parseFloat(i); 
+                    datas_row.add(f);
+                }
+                datas.add(datas_row);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        // System.out.println(datas);
         Methods methods = new Methods();
-        System.out.println(methods.CaladerPerSen(100));
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame();
+            frame.setTitle("set Data");
+            frame.setLayout(null);
+            frame.setBounds(50,50, 1280,720);
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
+            frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
+    
+            JPanel panelDatas = new JPanel();
+            panelDatas.setBounds(10, 50, 980, 600);
+            // panelDatas.setBackground(new Color(0, 255, 50));
+            panelDatas.setBorder(new LineBorder(Color.BLACK));
+            panelDatas.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
+            for(int i=0;i<datas.size();i++){
+                JPanel rowDatas = new JPanel();
+                rowDatas.setLayout(new GridLayout());
+                for(int j=0;j<datas.get(i).size();j++){
+                    JButton button = new JButton();
+                    button.setBounds(0,0,50,50);
+                    button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
+                    rowDatas.add(button);
+                }
+                panelDatas.add(rowDatas);
+            }
+
+            frame.add(panelDatas);
+            frame.setVisible(true);
+        });
     }
 }
 public class Methods {
-    static Color getColor(int data){
-        Color color = new Color(0,0,0);
-          
-        return color;
+    static Color getColor(float persen){
+        if(persen>30){
+            return new Color(178,0,0);
+        }else if(persen>20){
+            return new Color(255,61,0);
+        }else if(persen>10){
+            return new Color(208,212,5);
+        }else{
+            return new Color(0,178,28);
+        }
     }
     static float CaladerPerSen(float data){
         float persen = 0;
