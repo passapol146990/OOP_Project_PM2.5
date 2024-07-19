@@ -50,26 +50,26 @@
 //         add(textArea);
 
 //         // ตั้งค่า ActionListener สำหรับปุ่มเปิดไฟล์
-//         openFileButton.addActionListener(new ActionListener() {
-//             @Override
-//             public void actionPerformed(ActionEvent e) {
-//                 JFileChooser fileChooser = new JFileChooser();
-//                 int result = fileChooser.showOpenDialog(null);
-//                 if (result == JFileChooser.APPROVE_OPTION) {
-//                     File selectedFile = fileChooser.getSelectedFile();
-//                     try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
-//                         String line;
-//                         StringBuilder content = new StringBuilder();
-//                         while ((line = reader.readLine()) != null) {
-//                             content.append(line).append("\n");
-//                         }
-//                         textArea.setText(content.toString());
-//                     } catch (IOException ex) {
-//                         ex.printStackTrace();
-//                     }
-//                 }
-//             }
-//         });
+        // openFileButton.addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(ActionEvent e) {
+        //         JFileChooser fileChooser = new JFileChooser();
+        //         int result = fileChooser.showOpenDialog(null);
+        //         if (result == JFileChooser.APPROVE_OPTION) {
+        //             File selectedFile = fileChooser.getSelectedFile();
+        //             try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
+        //                 String line;
+        //                 StringBuilder content = new StringBuilder();
+        //                 while ((line = reader.readLine()) != null) {
+        //                     content.append(line).append("\n");
+        //                 }
+        //                 textArea.setText(content.toString());
+        //             } catch (IOException ex) {
+        //                 ex.printStackTrace();
+        //             }
+        //         }
+        //     }
+        // });
 //     }
 
 //     public static void main(String[] args) {
@@ -83,25 +83,19 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-/**
- * GUI_setData
- */
 class GUI_setData extends JFrame{
-    static ArrayList <ArrayList> datas = new ArrayList<ArrayList>();
-    public GUI_setData(String title){
-        setTitle(title);
-        setBounds(50,50, 1280,720);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
+    static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
     public static void main(String[] args) {
         try {
-            Scanner rf = new Scanner(new File("./pm2.5.txt"));
-            while (rf.hasNext()) {
+            Scanner readFile = new Scanner(new File("./pm2.5.txt"));
+            while (readFile.hasNext()) {
                 ArrayList <Float> datas_row = new ArrayList<Float>();
-                for (String i:rf.nextLine().split("\t")) {
+                for (String i:readFile.nextLine().split("\t")) {
                     float f=Float.parseFloat(i); 
                     datas_row.add(f);
                 }
@@ -111,7 +105,6 @@ class GUI_setData extends JFrame{
             System.out.println(e);
         }
         // System.out.println(datas);
-        Methods methods = new Methods();
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame();
             frame.setTitle("set Data");
@@ -125,6 +118,7 @@ class GUI_setData extends JFrame{
             // panelDatas.setBackground(new Color(0, 255, 50));
             panelDatas.setBorder(new LineBorder(Color.BLACK));
             panelDatas.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
+            Methods methods = new Methods();
             for(int i=0;i<datas.size();i++){
                 JPanel rowDatas = new JPanel();
                 rowDatas.setLayout(new GridLayout());
@@ -132,18 +126,60 @@ class GUI_setData extends JFrame{
                     JButton button = new JButton();
                     button.setBounds(0,0,50,50);
                     button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
+                    button.putClientProperty("row",i);
+                    button.putClientProperty("col",j);
+                    button.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            JButton sourceButton = (JButton) e.getSource();
+                            int row = (int) sourceButton.getClientProperty("row");
+                            int col = (int) sourceButton.getClientProperty("col");
+                            // System.out.println(datas.get(row).get(col));
+                            methods.add_score(datas,row,col);
+                        }
+                    });
                     rowDatas.add(button);
                 }
                 panelDatas.add(rowDatas);
             }
-
             frame.add(panelDatas);
             frame.setVisible(true);
         });
     }
 }
 public class Methods {
-    static Color getColor(float persen){
+    Methods methods = new Methods();
+    void setDatas(ArrayList<ArrayList<Float>>datas,JPanel panelDatas){
+        for(int i=0;i<datas.size();i++){
+            JPanel rowDatas = new JPanel();
+            rowDatas.setLayout(new GridLayout());
+            for(int j=0;j<datas.get(i).size();j++){
+                JButton button = new JButton();
+                button.setBounds(0,0,50,50);
+                button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
+                button.putClientProperty("row",i);
+                button.putClientProperty("col",j);
+                button.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        JButton sourceButton = (JButton) e.getSource();
+                        int row = (int) sourceButton.getClientProperty("row");
+                        int col = (int) sourceButton.getClientProperty("col");
+                        // System.out.println(datas.get(row).get(col));
+                        methods.add_score(datas,row,col);
+                    }
+                });
+                // JButton clearButton = new JButton("Clear Panel");
+                // clearButton.addActionListener(e -> {
+                //     panelDatas.removeAll();  // Remove all components from the panel
+                //     panelDatas.revalidate();  // Revalidate the panel to refresh the layout
+                //     panelDatas.repaint();     // Repaint the panel to update the UI
+                // });
+                rowDatas.add(button);
+            }
+            panelDatas.add(rowDatas);
+        }
+    }
+    
+    Color getColor(float persen){
         if(persen>30){
             return new Color(178,0,0);
         }else if(persen>20){
@@ -154,7 +190,7 @@ public class Methods {
             return new Color(0,178,28);
         }
     }
-    static float CaladerPerSen(float data){
+    float CaladerPerSen(float data){
         float persen = 0;
         if(data<=50){
             persen = (float)((float)(data-0)/(50-0))*(9-0)+0;
@@ -166,5 +202,45 @@ public class Methods {
             persen = (float)((float)(data-151)/(500-101))*(100-30)+30;
         }  
         return persen;
+    }
+    void add_score(ArrayList<ArrayList<Float>>datas,int x,int y){
+        ArrayList<ArrayList<Float>>lists = new ArrayList<ArrayList<Float>>();
+        // on data
+        if (x-1>=0) {
+            ArrayList<Float>on = new ArrayList<Float>();
+            if (y-1>=0) {
+                on.add((Float)datas.get(x-1).get(y-1));
+            }
+            on.add((Float)datas.get(x-1).get(y));
+            if (y+1<=19) {
+                on.add((Float)datas.get(x-1).get(y+1));
+            }
+            lists.add(on);
+        }
+        // center data
+        ArrayList<Float>center = new ArrayList<Float>();
+        if (y-1>=0) {
+            center.add((Float)datas.get(x).get(y-1));
+        }
+        center.add((Float)datas.get(x).get(y));
+        if (y+1<=19) {
+            center.add((Float)datas.get(x).get(y+1));
+        }
+        lists.add(center);
+        // under data
+        if(x+1<=19) {
+            ArrayList<Float>under = new ArrayList<Float>();
+            if (y-1>=0) {
+                under.add((Float)datas.get(x+1).get(y-1));
+            }
+            under.add((Float)datas.get(x+1).get(y));
+            if (y+1<=19) {
+                under.add((Float)datas.get(x+1).get(y+1));
+            }
+            lists.add(under);
+        }
+        for(ArrayList<Float>i : lists){
+            System.out.println(i);
+        }
     }
 }
