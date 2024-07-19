@@ -3,7 +3,6 @@ import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import java.awt.*;
-import javax.swing.*;
 
 public class Button_1 extends JButton{
     public Button_1(String text) {
