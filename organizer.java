@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 class organizer {
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI");
+        Font font = new Font("Tahoma",Font.BOLD,55);
         frame.setLayout(new BorderLayout());
         frame.setBounds(450, 300, 1280, 720);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
@@ -22,6 +23,7 @@ class organizer {
         gbc.gridx = 1;
         gbc.insets = new Insets(10, 0, 20, 25);
         JLabel label = new JLabel("Organizer",JLabel.CENTER);
+        label.setFont(font);
         panel0.add(label,gbc);
         panel1.setLayout(new GridLayout());
         panel2.setLayout(new GridLayout());
