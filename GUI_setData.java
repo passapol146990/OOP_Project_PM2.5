@@ -1,96 +1,16 @@
-// import java.awt.*;
-// import javax.swing.*;
-// public class GUI_setData extends JFrame{
-//         public static void main(String[] args) {
-//             JFrame frame = new JFrame("start");
-//             frame.setLayout(null);
-//             frame.setBounds(10, 10, 1280, 720);
-//             JButton button = new JButton();
-//             frame.add(button);
-//             frame.setVisible(true);
-//             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//         }
-// }
-
-// public class GUI_setData extends JFrame {
-
-//     public GUI_setData() {
-//         // ตั้งค่าหน้าต่างหลัก
-//         setTitle("start");
-//         setLayout(null);
-//         setBounds(10, 10, 1280, 720);
-//         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-//         // สร้าง JTabbedPane
-//         JTabbedPane tabbedPane = new JTabbedPane();
-//         tabbedPane.setBounds(0, 0, 1280, 100);
-
-//         // สร้าง JPanel สำหรับปุ่มกลับหน้าหลัก
-//         JPanel mainPanel = new JPanel();
-//         mainPanel.setLayout(null);
-//         JButton mainButton = new JButton("Back");
-//         mainButton.setBounds(10, 10, 200, 30);
-//         mainPanel.add(mainButton);
-//         tabbedPane.addTab("menu", mainPanel);
-
-//         // สร้าง JPanel สำหรับปุ่มเปิดไฟล์
-//         JPanel openFilePanel = new JPanel();
-//         openFilePanel.setLayout(null);
-//         JButton openFileButton = new JButton("openfile .txt");
-//         openFileButton.setBounds(10, 10, 200, 30);
-//         openFilePanel.add(openFileButton);
-//         tabbedPane.addTab("open file", openFilePanel);
-
-//         // เพิ่ม JTabbedPane ลงใน JFrame
-//         add(tabbedPane);
-
-//         // สร้าง JTextArea สำหรับแสดงข้อมูลจากไฟล์
-//         JTextArea textArea = new JTextArea();
-//         textArea.setBounds(0, 100, 1280, 620);
-//         add(textArea);
-
-//         // ตั้งค่า ActionListener สำหรับปุ่มเปิดไฟล์
-        // openFileButton.addActionListener(new ActionListener() {
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         JFileChooser fileChooser = new JFileChooser();
-        //         int result = fileChooser.showOpenDialog(null);
-        //         if (result == JFileChooser.APPROVE_OPTION) {
-        //             File selectedFile = fileChooser.getSelectedFile();
-        //             try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
-        //                 String line;
-        //                 StringBuilder content = new StringBuilder();
-        //                 while ((line = reader.readLine()) != null) {
-        //                     content.append(line).append("\n");
-        //                 }
-        //                 textArea.setText(content.toString());
-        //             } catch (IOException ex) {
-        //                 ex.printStackTrace();
-        //             }
-        //         }
-        //     }
-        // });
-//     }
-
-//     public static void main(String[] args) {
-//         SwingUtilities.invokeLater(() -> {
-//             GUI_setData frame = new GUI_setData();
-//             frame.setVisible(true);
-//         });
-//     }
-// }
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 class GUI_setData extends JFrame{
     static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
     public static void main(String[] args) {
+        About_Methods methods = new About_Methods();
         try {
             Scanner readFile = new Scanner(new File("./pm2.5.txt"));
             while (readFile.hasNext()) {
@@ -118,7 +38,6 @@ class GUI_setData extends JFrame{
             // panelDatas.setBackground(new Color(0, 255, 50));
             panelDatas.setBorder(new LineBorder(Color.BLACK));
             panelDatas.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
-            Methods methods = new Methods();
             for(int i=0;i<datas.size();i++){
                 JPanel rowDatas = new JPanel();
                 rowDatas.setLayout(new GridLayout());
@@ -133,8 +52,8 @@ class GUI_setData extends JFrame{
                             JButton sourceButton = (JButton) e.getSource();
                             int row = (int) sourceButton.getClientProperty("row");
                             int col = (int) sourceButton.getClientProperty("col");
-                            // System.out.println(datas.get(row).get(col));
                             methods.add_score(datas,row,col);
+                            // System.out.println(row+"_"+col);
                         }
                     });
                     rowDatas.add(button);
@@ -146,9 +65,10 @@ class GUI_setData extends JFrame{
         });
     }
 }
-public class Methods {
-    Methods methods = new Methods();
+
+class About_Methods {
     void setDatas(ArrayList<ArrayList<Float>>datas,JPanel panelDatas){
+        About_Methods methods = new About_Methods();
         for(int i=0;i<datas.size();i++){
             JPanel rowDatas = new JPanel();
             rowDatas.setLayout(new GridLayout());
@@ -228,7 +148,7 @@ public class Methods {
         }
         lists.add(center);
         // under data
-        if(x+1<=19) {
+        if(x>=0 && x+1<=9) {
             ArrayList<Float>under = new ArrayList<Float>();
             if (y-1>=0) {
                 under.add((Float)datas.get(x+1).get(y-1));
