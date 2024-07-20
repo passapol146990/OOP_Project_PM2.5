@@ -33,7 +33,6 @@ class organizer {
         panel1.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel2.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel3.setBorder(BorderFactory.createCompoundBorder(O, I));
-        //gbc.insets = new Insets(0, 0, 0, 20);
         gbc.gridy = 1;
         gbc.gridx = 0;
         panel0.add(panel1,gbc);
