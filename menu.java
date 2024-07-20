@@ -28,21 +28,21 @@ public class menu{
         gbc.insets = new Insets(10, 0, 10, 0); // ช่องว่างระหว่างปุ่ม
         
         // สร้างปุ่มและเพิ่มลงใน JPanel
-        Button_1 button0 = new Button_1("Start");
+        Button_1 button0 = new Button_1("Start",21,85,21,85);
         button0.setPreferredSize(size);
         gbc.gridx = 0;
         gbc.gridy = 1;
         button0.setFont(font1);
         panel.add(button0, gbc);
         
-        Button_1 button1 = new Button_1("Organizer");
+        Button_1 button1 = new Button_1("Organizer",21,85,21,85);
         button1.setPreferredSize(size);
         gbc.gridx = 0;
         gbc.gridy = 2;
         button1.setFont(font1);
         panel.add(button1, gbc);
         
-        Button_1 button2 = new Button_1("Exit");
+        Button_1 button2 = new Button_1("Exit",21,85,21,85);
         button2.setPreferredSize(size);
         gbc.gridx = 0;
         gbc.gridy = 3;

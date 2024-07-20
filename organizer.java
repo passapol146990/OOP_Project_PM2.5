@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,15 +11,18 @@ class organizer {
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI");
         Font font = new Font("Tahoma",Font.BOLD,55);
+        Button_1 button = new Button_1("Back",15,25,15,25);
         frame.setLayout(new BorderLayout());
         frame.setBounds(450, 300, 1280, 720);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
         GridBagConstraints gbc = new GridBagConstraints();
-        JPanel panel0 = new JPanel();
-        JPanel panel1 = new JPanel();
-        JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
+        JPanel panel0 = new JPanel();   JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();   JPanel panel3 = new JPanel();
         panel0.setLayout(new GridBagLayout());
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        panel0.add(button,gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridwidth = 1;
         gbc.gridy = 0;
         gbc.gridx = 1;
         gbc.insets = new Insets(10, 0, 20, 25);

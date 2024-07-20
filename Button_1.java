@@ -5,11 +5,11 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
 public class Button_1 extends JButton{
-    public Button_1(String text) {
+    public Button_1(String text,int T,int L,int B,int R) {
         super(text);
         setContentAreaFilled(false);
         setFocusPainted(false);
-        setBorder(BorderFactory.createEmptyBorder(21, 85,21, 85));
+        setBorder(BorderFactory.createEmptyBorder(T, L,B, R));
         setBackground(new Color(254,169,169));
     }
 
