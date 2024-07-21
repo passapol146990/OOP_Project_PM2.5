@@ -3,14 +3,15 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class Button_1 extends JButton implements MouseListener{
+public class Button_1 extends JButton{
     public Button_1(String text,int T,int L,int B,int R) {
         super(text);
-        setContentAreaFilled(false);
+        setContentAreaFilled(false);    
         setFocusPainted(false);
         setBorder(BorderFactory.createEmptyBorder(T, L,B, R));
         setBackground(new Color(254,169,169));
@@ -42,5 +43,4 @@ public class Button_1 extends JButton implements MouseListener{
     public void updateUI() {
         setUI(new BasicButtonUI());
     }
-
 }
