@@ -1,10 +1,13 @@
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicButtonUI;
-
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class Button_1 extends JButton{
+public class Button_1 extends JButton implements MouseListener{
     public Button_1(String text,int T,int L,int B,int R) {
         super(text);
         setContentAreaFilled(false);
@@ -39,4 +42,5 @@ public class Button_1 extends JButton{
     public void updateUI() {
         setUI(new BasicButtonUI());
     }
+
 }

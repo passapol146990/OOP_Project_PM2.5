@@ -12,11 +12,9 @@ public class menu{
         frame.setLayout(new BorderLayout());
         frame.setBounds(0, 0, 1280, 720);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
         Dimension size = new Dimension(300, 75);
         Font font = new Font("Tahoma",Font.BOLD,100);
         Font font1 = new Font("Tahoma",Font.BOLD,25);
-        
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout()); // ใช้ GridBagLayout
         GridBagConstraints gbc = new GridBagConstraints();
@@ -54,5 +52,6 @@ public class menu{
         frame.add(panel, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.addWindowListener(button2);
     }
 }
