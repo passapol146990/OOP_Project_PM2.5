@@ -52,6 +52,5 @@ public class menu{
         frame.add(panel, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.addWindowListener(button2);
     }
 }
