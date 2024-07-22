@@ -65,7 +65,7 @@ class GUI_setData extends JFrame{
                     if(chk == 0)
                     {
                         chk = 1;
-                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                         chkstate = 101;
                     }
                     else
@@ -106,9 +106,10 @@ class GUI_setData extends JFrame{
                             int col = (int) sourceButton.getClientProperty("col");
                             if(chkstate == 101)
                             {
-                                
+                                System.out.println(datas.get(row).get(col));
+                                System.out.println(datas);
                             }
-                             //methods.add_score(datas,row,col);
+                             methods.add_score(datas,row,col);
                             // System.out.println(row+"_"+col);
                         }
                     });
@@ -199,7 +200,7 @@ class About_Methods {
         if (y-1>=0) {
             center.add((Float)datas.get(x).get(y-1));
         }
-        center.add((Float)datas.get(x).get(y));
+            center.add((Float)datas.get(x).get(y));
         if (y+1<=19) {
             center.add((Float)datas.get(x).get(y+1));
         }
