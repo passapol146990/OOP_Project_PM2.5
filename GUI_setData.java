@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class GUI_setData extends JFrame{
+    static int chkstate = 0;// bug to watch
     static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
     public static void main(String[] args) {
         About_Methods methods = new About_Methods();
@@ -55,6 +56,26 @@ class GUI_setData extends JFrame{
             ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
             JButton RandomkRain = new JButton(new ImageIcon(iconRandomRaid.getImage().getScaledInstance(120,30,iconRandomRaid.getImage().SCALE_SMOOTH)));
             RandomkRain.setBounds(1100,5,120,30);
+            
+            //clickRain Action
+            clickRain.addActionListener(new ActionListener(){
+                private int chk = 0;
+                public void actionPerformed(ActionEvent cr)
+                {
+                    if(chk == 0)
+                    {
+                        chk = 1;
+                        frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        chkstate = 101;
+                    }
+                    else
+                    {
+                        chk = 0;
+                        frame.setCursor(Cursor.getDefaultCursor());
+                        chkstate = 102;
+                    }
+                }
+            });
 
             navbar.add(openFile);
             navbar.add(saveFile);
@@ -83,7 +104,11 @@ class GUI_setData extends JFrame{
                             JButton sourceButton = (JButton) e.getSource();
                             int row = (int) sourceButton.getClientProperty("row");
                             int col = (int) sourceButton.getClientProperty("col");
-                            // methods.add_score(datas,row,col);
+                            if(chkstate == 101)
+                            {
+                                
+                            }
+                             //methods.add_score(datas,row,col);
                             // System.out.println(row+"_"+col);
                         }
                     });
@@ -95,7 +120,7 @@ class GUI_setData extends JFrame{
             frame.add(panelDatas);
             frame.setVisible(true);
         });
-    }
+    }//end of Main
 }
 
 class About_Methods {
