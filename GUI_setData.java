@@ -32,7 +32,37 @@ class GUI_setData extends JFrame{
             frame.setBounds(50,50, 1280,720);
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
             frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
-    
+            // navbar
+            JPanel navbar = new JPanel();
+            navbar.setBounds(-1, 0,1280,40);
+            navbar.setBorder(new LineBorder(new Color(0,0,0)));
+            navbar.setLayout(null);
+
+            JButton btnBack = new JButton("Back");
+            btnBack.setBounds(5,5,100,30);
+            btnBack.setCursor(new Cursor(HAND_CURSOR));
+
+            JButton openFile = new JButton("open file");
+            openFile.setBounds(300,5,100,30);
+            JButton saveFile = new JButton("save");
+            saveFile.setBounds(410,5,100,30);
+            JButton clearFile = new JButton("clear");
+            clearFile.setBounds(520,5,100,30);
+
+            ImageIcon iconRain = new ImageIcon("./image/rain.png");
+            JButton clickRain = new JButton(new ImageIcon(iconRain.getImage().getScaledInstance(120,30,iconRain.getImage().SCALE_SMOOTH)));
+            clickRain.setBounds(950,5,120,30);
+            ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
+            JButton RandomkRain = new JButton(new ImageIcon(iconRandomRaid.getImage().getScaledInstance(120,30,iconRandomRaid.getImage().SCALE_SMOOTH)));
+            RandomkRain.setBounds(1100,5,120,30);
+
+            navbar.add(openFile);
+            navbar.add(saveFile);
+            navbar.add(clearFile);
+            navbar.add(clickRain);
+            navbar.add(RandomkRain);
+            navbar.add(btnBack);
+            // ข้อมูลด้านใน
             JPanel panelDatas = new JPanel();
             panelDatas.setBounds(10, 50, 980, 600);
             // panelDatas.setBackground(new Color(0, 255, 50));
@@ -44,6 +74,7 @@ class GUI_setData extends JFrame{
                 for(int j=0;j<datas.get(i).size();j++){
                     JButton button = new JButton();
                     button.setBounds(0,0,50,50);
+                    button.setCursor(new Cursor(HAND_CURSOR));
                     button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
                     button.putClientProperty("row",i);
                     button.putClientProperty("col",j);
@@ -52,7 +83,7 @@ class GUI_setData extends JFrame{
                             JButton sourceButton = (JButton) e.getSource();
                             int row = (int) sourceButton.getClientProperty("row");
                             int col = (int) sourceButton.getClientProperty("col");
-                            methods.add_score(datas,row,col);
+                            // methods.add_score(datas,row,col);
                             // System.out.println(row+"_"+col);
                         }
                     });
@@ -60,6 +91,7 @@ class GUI_setData extends JFrame{
                 }
                 panelDatas.add(rowDatas);
             }
+            frame.add(navbar);
             frame.add(panelDatas);
             frame.setVisible(true);
         });
