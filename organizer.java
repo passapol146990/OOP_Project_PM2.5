@@ -1,6 +1,5 @@
 import java.awt.*;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,7 +7,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 class organizer {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
+        
         JFrame frame = new JFrame("GUI");
         Font font = new Font("Tahoma",Font.BOLD,55);
         Button_1 button = new Button_1("Back",15,25,15,25);

@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Label;
+
 import javax.swing.*;// import is for folder
 public class menu{
     public static void main(String[] args) {
@@ -24,7 +25,6 @@ public class menu{
         panel.add(label,gbc);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 0, 10, 0); // ช่องว่างระหว่างปุ่ม
-        
         // สร้างปุ่มและเพิ่มลงใน JPanel
         Button_1 button0 = new Button_1("Start",21,85,21,85);
         button0.setPreferredSize(size);
@@ -51,6 +51,7 @@ public class menu{
         // เพิ่ม panel ลงใน frame
         frame.add(panel, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
+        button2.addActionListener(e -> System.exit(0));
         frame.setVisible(true);
-    }
+    }    
 }
