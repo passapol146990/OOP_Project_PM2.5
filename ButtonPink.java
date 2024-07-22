@@ -3,16 +3,16 @@ import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
-public class Button_1 extends JButton{
+public class ButtonPink extends JButton{
     private Image backgroundImage;
-    public Button_1(String text,int T,int L,int B,int R) {
+    public ButtonPink(String text,int T,int L,int B,int R) {
         super(text);
         setContentAreaFilled(false);    
         setFocusPainted(false);
         setBorder(BorderFactory.createEmptyBorder(T, L,B, R));
         setBackground(new Color(254,169,169));
     }
-    public Button_1(String text,Image image,int T,int L,int B,int R) {
+    public ButtonPink(String text,Image image,int T,int L,int B,int R) {
         super(text);
         this.backgroundImage = image;
         setContentAreaFilled(false);    

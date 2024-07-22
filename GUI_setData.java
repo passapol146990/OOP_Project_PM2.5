@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class GUI_setData extends JFrame{
+class GUI_setData{
     static int chkstate = 0;// bug to watch
     static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
     public static void main(String[] args) {
@@ -41,7 +41,7 @@ class GUI_setData extends JFrame{
 
             JButton btnBack = new JButton("Back");
             btnBack.setBounds(5,5,100,30);
-            btnBack.setCursor(new Cursor(HAND_CURSOR));
+            btnBack.setCursor(new Cursor(JFrame.HAND_CURSOR));
 
             JButton openFile = new JButton("open file");
             openFile.setBounds(300,5,100,30);
@@ -95,7 +95,7 @@ class GUI_setData extends JFrame{
                 for(int j=0;j<datas.get(i).size();j++){
                     JButton button = new JButton();
                     button.setBounds(0,0,50,50);
-                    button.setCursor(new Cursor(HAND_CURSOR));
+                    button.setCursor(new Cursor(JFrame.HAND_CURSOR));
                     button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
                     button.putClientProperty("row",i);
                     button.putClientProperty("col",j);
@@ -121,7 +121,7 @@ class GUI_setData extends JFrame{
             frame.add(panelDatas);
             frame.setVisible(true);
         });
-    }//end of Main
+    }
 }
 
 class About_Methods {

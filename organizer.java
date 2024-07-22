@@ -11,7 +11,7 @@ class organizer {
         
         JFrame frame = new JFrame("GUI");
         Font font = new Font("Tahoma",Font.BOLD,55);
-        Button_1 button = new Button_1("Back",15,25,15,25);
+        ButtonPink button = new ButtonPink("Back",15,25,15,25);
         frame.setLayout(new BorderLayout());
         frame.setBounds(450, 300, 1280, 720);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
