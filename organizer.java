@@ -18,7 +18,7 @@ class organizer {
         frame.setBounds(450, 300, 1280, 720);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
         GridBagConstraints gbc = new GridBagConstraints();
-        JPanel panel0 = new JPanel();   JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel panel0 = new JPanel();   JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();   JPanel panel3 = new JPanel();
         panel0.setLayout(new GridBagLayout());
         gbc.anchor = GridBagConstraints.NORTHWEST;
@@ -41,20 +41,39 @@ class organizer {
         panel3.setBorder(BorderFactory.createCompoundBorder(O, I));
         
         ImageIcon iconpic1 = new ImageIcon("Phol.png");
-        JLabel label_phol = new JLabel(new ImageIcon(iconpic1.getImage().getScaledInstance(300,400,iconpic1.getImage().SCALE_SMOOTH)));
+        JLabel label_phol = new JLabel(new ImageIcon(iconpic1.getImage().getScaledInstance(300,250,iconpic1.getImage().SCALE_SMOOTH)));
         ImageIcon iconpic2 = new ImageIcon("Poom.jpg");
-        JLabel label_poom = new JLabel(new ImageIcon(iconpic2.getImage().getScaledInstance(300,400,iconpic2.getImage().SCALE_SMOOTH)));
+        JLabel label_poom = new JLabel(new ImageIcon(iconpic2.getImage().getScaledInstance(300,250,iconpic2.getImage().SCALE_SMOOTH)));
         ImageIcon iconpic3 = new ImageIcon("Nam.jpg");
-        JLabel label_nam = new JLabel(new ImageIcon(iconpic3.getImage().getScaledInstance(300,400,iconpic3.getImage().SCALE_SMOOTH)));
-        Font font_name = new Font("Tahoma",Font.BOLD,10);
+        JLabel label_nam = new JLabel(new ImageIcon(iconpic3.getImage().getScaledInstance(300,250,iconpic3.getImage().SCALE_SMOOTH)));
+        
+        Font font_name = new Font("Tahoma",Font.BOLD,25);
+        panel1.setLayout(new GridLayout(2,1));
+        panel2.setLayout(new GridLayout(2,1));
+        panel3.setLayout(new GridLayout(2,1));
         panel1.add(label_phol);
         panel2.add(label_poom);
         panel3.add(label_nam);
-        // JLabel label_name_Phol = new JLabel("Phol");
-        // label_name_Phol.setFont(font_name);
-        // panel1.add(label_name_Phol);
         
         
+        JLabel label_textname_phol = new JLabel();
+        label_textname_phol.setFont(font_name);
+        label_textname_phol.setText("<html><div style='text-align: center;'>Phol<br>66011212067<br>นายพัสพล สุทาธรรม</div></html>");
+        label_textname_phol.setVerticalAlignment(JLabel.CENTER);
+        label_textname_phol.setHorizontalAlignment(JLabel.CENTER);
+        panel1.add(label_textname_phol);
+        JLabel label_textname_poom = new JLabel();
+        label_textname_poom.setFont(font_name);
+        label_textname_poom.setText("<html><div style='text-align: center;'>Poom<br>66011212245<br>นายภานุมาศ สายธนู</div></html>");
+        label_textname_poom.setVerticalAlignment(JLabel.CENTER);
+        label_textname_poom.setHorizontalAlignment(JLabel.CENTER);
+        panel2.add(label_textname_poom);
+        JLabel label_textname_nam = new JLabel();
+        label_textname_nam.setFont(font_name);
+        label_textname_nam.setText("<html><div style='text-align: center;'>Nam<br>66011212108<br>นายนิติภูมิ ดิบประโคน</div></html>");
+        label_textname_nam.setVerticalAlignment(JLabel.CENTER);
+        label_textname_nam.setHorizontalAlignment(JLabel.CENTER);
+        panel3.add(label_textname_nam);
 
         gbc.gridy = 1;
         gbc.gridx = 0;

@@ -1,3 +1,2 @@
-JLabel label = new JLabel("Organizer",JLabel.CENTER);
-        label.setFont(font);
-        panel0.add(label,gbc);
+ label_textname_poom.setVerticalAlignment(JLabel.CENTER);
+        label_textname_poom.setHorizontalAlignment(JLabel.CENTER);
