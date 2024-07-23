@@ -39,14 +39,14 @@ class organizer {
         panel1.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel2.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel3.setBorder(BorderFactory.createCompoundBorder(O, I));
-        
-        ImageIcon iconpic1 = new ImageIcon("Phol.png");
+        //importรูป พร้อมตั้งขนาด
+        ImageIcon iconpic1 = new ImageIcon("./image/Phol.png");
         JLabel label_phol = new JLabel(new ImageIcon(iconpic1.getImage().getScaledInstance(300,250,iconpic1.getImage().SCALE_SMOOTH)));
-        ImageIcon iconpic2 = new ImageIcon("Poom.jpg");
+        ImageIcon iconpic2 = new ImageIcon("./image/Poom.jpg");
         JLabel label_poom = new JLabel(new ImageIcon(iconpic2.getImage().getScaledInstance(300,250,iconpic2.getImage().SCALE_SMOOTH)));
-        ImageIcon iconpic3 = new ImageIcon("Nam.jpg");
+        ImageIcon iconpic3 = new ImageIcon("./image/Nam.jpg");
         JLabel label_nam = new JLabel(new ImageIcon(iconpic3.getImage().getScaledInstance(300,250,iconpic3.getImage().SCALE_SMOOTH)));
-        
+        //แบ่ง panel พร้อม ยัดรูปใส่ panel 
         Font font_name = new Font("Tahoma",Font.BOLD,25);
         panel1.setLayout(new GridLayout(2,1));
         panel2.setLayout(new GridLayout(2,1));
@@ -55,7 +55,7 @@ class organizer {
         panel2.add(label_poom);
         panel3.add(label_nam);
         
-        
+        // เขียนคำอธิบาย ชื่อ
         JLabel label_textname_phol = new JLabel();
         label_textname_phol.setFont(font_name);
         label_textname_phol.setText("<html><div style='text-align: center;'>Phol<br>66011212067<br>นายพัสพล สุทาธรรม</div></html>");

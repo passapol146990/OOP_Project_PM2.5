@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.File;
@@ -33,6 +34,28 @@ class GUI_setData extends JFrame{
             frame.setBounds(50,50, 1280,720);
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
             frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
+            // importรูปผู้ป่วย
+
+            JPanel pic_of_feeling = new JPanel();
+            pic_of_feeling.setBounds(1000,50 , 250, 250);
+            pic_of_feeling.setLayout(new FlowLayout());
+            ImageIcon icon_happy = new ImageIcon("./image/happy.png");
+            JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
+            Border O = BorderFactory.createLineBorder(Color.BLACK,2);
+            Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
+            pic_of_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+            pic_of_feeling.add(label_happy);
+            frame.add(pic_of_feeling);
+            
+            // importข้อความ
+            JPanel text_feeling = new JPanel();
+            text_feeling.setBounds(1000,350 , 250, 300);
+            text_feeling.setLayout(new FlowLayout());
+            text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+            frame.add(text_feeling);
+
+
+
             // navbar
             JPanel navbar = new JPanel();
             navbar.setBounds(-1, 0,1280,40);
