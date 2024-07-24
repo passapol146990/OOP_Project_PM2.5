@@ -9,7 +9,7 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;// import is for folder
+import javax.swing.*;
 public class App{
     public static void main(String[] args) {
         JFrame frame = new JFrame("PM2.5");
