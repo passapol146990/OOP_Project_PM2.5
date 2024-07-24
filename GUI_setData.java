@@ -16,7 +16,8 @@ class GUI_setData extends JFrame{
         try {
             Scanner readFile = new Scanner(new File("./pm2.5.txt"));
             while (readFile.hasNext()) {
-                ArrayList <Float> datas_row = new ArrayList<Float>();
+                ArrayList <Float> datas_row = new ArrayList<Float>
+                ();
                 for (String i:readFile.nextLine().split("\t")) {
                     float f=Float.parseFloat(i); 
                     datas_row.add(f);
@@ -41,10 +42,16 @@ class GUI_setData extends JFrame{
             pic_of_feeling.setBounds(1000,50 , 250, 250);
             ImageIcon icon_happy = new ImageIcon("./image/happy.png");
             JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
+            ImageIcon icon_sad = new ImageIcon("./image/sad.png");
+            JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
+            ImageIcon icon_sick = new ImageIcon("./image/sick.png");
+            JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
+            ImageIcon icon_normal = new ImageIcon("./image/normal.png");
+            JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
             Border O = BorderFactory.createLineBorder(Color.BLACK,2);
             Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
             pic_of_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
-            pic_of_feeling.add(label_happy);
+            pic_of_feeling.add(label_sick);
             frame.add(pic_of_feeling);
             
             // importข้อความ
