@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 public class MenuPage extends JPanel {
     int save = 0;
-    MenuPage(){
+    MenuPage(App app){
         setLayout(new GridBagLayout());
         GridBagConstraints position = new GridBagConstraints();
 
@@ -50,8 +50,7 @@ public class MenuPage extends JPanel {
 
         btnStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                // setVisible(false);
-                
+                app.showPanel("start");
             }
         });
     }
