@@ -37,8 +37,8 @@ class GUI_setData extends JFrame{
             // importรูปผู้ป่วย
 
             JPanel pic_of_feeling = new JPanel();
-            pic_of_feeling.setBounds(1000,50 , 250, 250);
             pic_of_feeling.setLayout(new FlowLayout());
+            pic_of_feeling.setBounds(1000,50 , 250, 250);
             ImageIcon icon_happy = new ImageIcon("./image/happy.png");
             JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
             Border O = BorderFactory.createLineBorder(Color.BLACK,2);
@@ -48,11 +48,18 @@ class GUI_setData extends JFrame{
             frame.add(pic_of_feeling);
             
             // importข้อความ
-            JPanel text_feeling = new JPanel();
-            text_feeling.setBounds(1000,350 , 250, 300);
-            text_feeling.setLayout(new FlowLayout());
-            text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
-            frame.add(text_feeling);
+            JPanel panel_text_feeling = new JPanel();
+            Font font_text= new Font("Tahoma",Font.BOLD,20);
+            panel_text_feeling.setBounds(1000,301 , 250, 350);
+            panel_text_feeling.setLayout(new FlowLayout());
+            panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+            JLabel label_text_feeling = new JLabel();
+            label_text_feeling.setFont(font_text);
+            label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+ 5 + "%<br>ประชากกรทั้งหมด"+100+" คน<br>ประชากรที่สุขภาพดี "+99+" คน<br>ประชากรที่ป่วย "+1+" คน<br>ร้อยละคนป่วย "+1+"%</div></html>");
+            label_text_feeling.setVerticalAlignment(JLabel.CENTER);
+            label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
+            panel_text_feeling.add(label_text_feeling);
+            frame.add(panel_text_feeling);
 
 
 
