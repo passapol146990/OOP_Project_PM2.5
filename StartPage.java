@@ -13,17 +13,19 @@ class StartPage extends JPanel{
     StartPage(App app){
         // setLayout(new GridLayout(3,1));
         setLayout(null);
-        Navbar navbar = new Navbar(app);
         ShowDatas showDatas = new ShowDatas(app);
+        // ShowStatusArea showStatusArea = new ShowStatusArea(app);
+        Navbar navbar = new Navbar(app,showDatas);
         // showDatas.readFile();
         // showDatas.setDatas();
         add(navbar);
         add(showDatas);
+        // add(showStatusArea);
     }
 }
 
 class Navbar extends JPanel{
-    Navbar(App app,){
+    Navbar(App app,ShowDatas showDatas){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
@@ -54,18 +56,20 @@ class Navbar extends JPanel{
 
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    JOptionPane.showMessageDialog(null, "Selected file: " + selectedFile.getAbsolutePath());
+                    // JOptionPane.showMessageDialog(null, "Selected file: " + selectedFile.getAbsolutePath());
+                    showDatas.readFile(selectedFile.getAbsolutePath());
+                    showDatas.setDatas();
                 }
             }
         });
 
 
         // JButton saveFile = new JButton("save");
-        ButtonPink saveFile = new ButtonPink("save",1,1,1,1);
-        saveFile.setBounds(410,5,100,30);
+        // ButtonPink saveFile = new ButtonPink("save",1,1,1,1);
+        // saveFile.setBounds(410,5,100,30);
         // JButton clearFile = new JButton("clear");
-        ButtonPink clearFile = new ButtonPink("clear",1,1,1,1);
-        clearFile.setBounds(520,5,100,30);
+        // ButtonPink clearFile = new ButtonPink("clear",1,1,1,1);
+        // clearFile.setBounds(520,5,100,30);
 
         ImageIcon iconRain = new ImageIcon("./image/rain.png");
         JButton clickRain = new JButton(new ImageIcon(iconRain.getImage().getScaledInstance(120,30,iconRain.getImage().SCALE_SMOOTH)));
@@ -94,8 +98,8 @@ class Navbar extends JPanel{
         // });
 
         add(openFile);
-        add(saveFile);
-        add(clearFile);
+        // add(saveFile);
+        // add(clearFile);
         add(clickRain);
         add(RandomkRain);
         add(btnBack);
@@ -103,22 +107,23 @@ class Navbar extends JPanel{
 }
 
 class ShowDatas extends JPanel{
-    static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
-    static int chkstate = 0;
+    public ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
+    public int chkstate = 0;
     ShowDatas(App app){}
     void setDatas(){
         About_Methods methods = new About_Methods();
+        removeAll();
         setBounds(10, 50, 980, 600);
         setBorder(new LineBorder(Color.BLACK));
-        setLayout(new GridLayout(datas.size(),datas.get(0).size()));
-        for(int i=0;i<datas.size();i++){
+        setLayout(new GridLayout(this.datas.size(),this.datas.get(0).size()));
+        for(int i=0;i<this.datas.size();i++){
             JPanel rowDatas = new JPanel();
             rowDatas.setLayout(new GridLayout());
-            for(int j=0;j<datas.get(i).size();j++){
+            for(int j=0;j<this.datas.get(i).size();j++){
                 JButton button = new JButton();
                 button.setBounds(0,0,50,50);
                 // button.setCursor(new Cursor(JFrame.HAND_CURSOR));
-                button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
+                button.setBackground(methods.getColor(methods.CaladerPerSen((float)this.datas.get(i).get(j))));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
                 button.addActionListener(new ActionListener() {
@@ -131,7 +136,7 @@ class ShowDatas extends JPanel{
                             System.out.println(datas.get(row).get(col));
                             System.out.println(datas);
                         }
-                            methods.add_score(datas,row,col);
+                        methods.add_score(datas,row,col);
                         // System.out.println(row+"_"+col);
                     }
                 });
@@ -139,10 +144,13 @@ class ShowDatas extends JPanel{
             }
             add(rowDatas);
         }
+        revalidate();
+        repaint();
     }
-    void readFile(){
+    void readFile(String path){
         try {
-            Scanner readFile = new Scanner(new File("./pm2.5.txt"));
+            // Scanner readFile = new Scanner(new File("./pm2.5.txt"));
+            Scanner readFile = new Scanner(new File(path));
             while (readFile.hasNext()) {
                 ArrayList <Float> datas_row = new ArrayList<Float>();
                 for (String i:readFile.nextLine().split("\t")) {
@@ -154,6 +162,14 @@ class ShowDatas extends JPanel{
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+}
+
+class ShowStatusArea extends JPanel{
+    ShowStatusArea(App app){
+        setBounds(1000, 50, 250, 600);
+        setBorder(new LineBorder(Color.BLACK));
+        // setLayout(new GridLayout(datas.size(),datas.get(0).size()));
     }
 }
 

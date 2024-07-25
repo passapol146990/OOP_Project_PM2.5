@@ -1,16 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Toolkit;
+
 public class App extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
@@ -22,6 +15,7 @@ public class App extends JFrame{
         setTitle(title);
         setBounds(50,50,1280,720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
         add(this.mainPanel);
         setVisible(true);
     }
