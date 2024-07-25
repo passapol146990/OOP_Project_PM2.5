@@ -9,18 +9,23 @@ import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 class StartPage extends JPanel{
     StartPage(App app){
         // setLayout(new GridLayout(3,1));
         setLayout(null);
         ShowDatas showDatas = new ShowDatas(app);
-        // ShowStatusArea showStatusArea = new ShowStatusArea(app);
+        ShowStatusArea showStatusArea = new ShowStatusArea(app);
         Navbar navbar = new Navbar(app,showDatas);
         // showDatas.readFile();
         // showDatas.setDatas();
+        // showStatusArea.clickArea();
         add(navbar);
         add(showDatas);
-        // add(showStatusArea);
+        add(showStatusArea);
     }
 }
 
@@ -169,7 +174,57 @@ class ShowStatusArea extends JPanel{
     ShowStatusArea(App app){
         setBounds(1000, 50, 250, 600);
         setBorder(new LineBorder(Color.BLACK));
-        // setLayout(new GridLayout(datas.size(),datas.get(0).size()));
+
+        ImageIcon icon_happy = new ImageIcon("./image/happy.png");
+        JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sad = new ImageIcon("./image/sad.png");
+        
+        JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sick = new ImageIcon("./image/sick.png");
+        
+        JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_normal = new ImageIcon("./image/normal.png");
+        
+        JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
+        add(label_normal);
+        
+        // importข้อความ
+        Font font1= new Font("Tahoma",Font.BOLD,20);
+        JLabel label_text_feeling = new JLabel("<html><div style='text-align: start;width:180px;'>Pm2.5 "+ 5 + "%<br>People"+100+"<br>Healthy population "+99+"<br>Sick population "+1+"<br>Percentage of sick people "+1+"%</div></html>");
+      
+        add(label_text_feeling);
+    }
+    void clickAreas(){
+        JPanel pic_of_feeling = new JPanel();
+        pic_of_feeling.setLayout(new FlowLayout());
+        pic_of_feeling.setBounds(1000,50 , 250, 250);
+        ImageIcon icon_happy = new ImageIcon("./image/happy.png");
+        JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sad = new ImageIcon("./image/sad.png");
+        JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sick = new ImageIcon("./image/sick.png");
+        JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_normal = new ImageIcon("./image/normal.png");
+        JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
+        Border O = BorderFactory.createLineBorder(Color.BLACK,2);
+        Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
+        pic_of_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+        pic_of_feeling.add(label_sick);
+        add(pic_of_feeling);
+        
+        // importข้อความ
+        JPanel panel_text_feeling = new JPanel();
+        Font font_text= new Font("Tahoma",Font.BOLD,20);
+        panel_text_feeling.setBounds(1000,301 , 250, 350);
+        panel_text_feeling.setLayout(new FlowLayout());
+        panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+        JLabel label_text_feeling = new JLabel();
+        label_text_feeling.setFont(font_text);
+        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+ 5 + "%<br>ประชากกรทั้งหมด"+100+" คน<br>ประชากรที่สุขภาพดี "+99+" คน<br>ประชากรที่ป่วย "+1+" คน<br>ร้อยละคนป่วย "+1+"%</div></html>");
+        label_text_feeling.setVerticalAlignment(JLabel.CENTER);
+        label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
+        panel_text_feeling.add(label_text_feeling);
+        add(panel_text_feeling);
     }
 }
 

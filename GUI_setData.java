@@ -36,7 +36,6 @@ class GUI_setData{
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
             frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
             // importรูปผู้ป่วย
-
             JPanel pic_of_feeling = new JPanel();
             pic_of_feeling.setLayout(new FlowLayout());
             pic_of_feeling.setBounds(1000,50 , 250, 250);
