@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -12,126 +14,16 @@ class StartPage extends JPanel{
         // setLayout(new GridLayout(3,1));
         setLayout(null);
         Navbar navbar = new Navbar(app);
-
+        ShowDatas showDatas = new ShowDatas(app);
+        // showDatas.readFile();
+        // showDatas.setDatas();
         add(navbar);
+        add(showDatas);
     }
-    // public static void main(String[] args) {
-        // About_Methods methods = new About_Methods();
-        // try {
-        //     Scanner readFile = new Scanner(new File("./pm2.5.txt"));
-        //     while (readFile.hasNext()) {
-        //         ArrayList <Float> datas_row = new ArrayList<Float>();
-        //         for (String i:readFile.nextLine().split("\t")) {
-        //             float f=Float.parseFloat(i); 
-        //             datas_row.add(f);
-        //         }
-        //         datas.add(datas_row);
-        //     }
-        // } catch (Exception e) {
-        //     System.out.println(e);
-        // }
-    //     // System.out.println(datas);
-    //     SwingUtilities.invokeLater(() -> {
-    //         JFrame frame = new JFrame();
-    //         frame.setTitle("set Data");
-    //         frame.setLayout(null);
-    //         frame.setBounds(50,50, 1280,720);
-    //         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //สำหรับปิด หน้าต่างแล้วจะปิดการทำงานของโปรแกรมไปเลย
-    //         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
-            // // navbar
-            // JPanel navbar = new JPanel();
-            // navbar.setBounds(-1, 0,1280,40);
-            // navbar.setBorder(new LineBorder(new Color(0,0,0)));
-            // navbar.setLayout(null);
-
-            // JButton btnBack = new JButton("Back");
-            // btnBack.setBounds(5,5,100,30);
-            // btnBack.setCursor(new Cursor(JFrame.HAND_CURSOR));
-
-            // JButton openFile = new JButton("open file");
-            // openFile.setBounds(300,5,100,30);
-            // JButton saveFile = new JButton("save");
-            // saveFile.setBounds(410,5,100,30);
-            // JButton clearFile = new JButton("clear");
-            // clearFile.setBounds(520,5,100,30);
-
-            // ImageIcon iconRain = new ImageIcon("./image/rain.png");
-            // JButton clickRain = new JButton(new ImageIcon(iconRain.getImage().getScaledInstance(120,30,iconRain.getImage().SCALE_SMOOTH)));
-            // clickRain.setBounds(950,5,120,30);
-            // ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
-            // JButton RandomkRain = new JButton(new ImageIcon(iconRandomRaid.getImage().getScaledInstance(120,30,iconRandomRaid.getImage().SCALE_SMOOTH)));
-            // RandomkRain.setBounds(1100,5,120,30);
-            
-            // //clickRain Action
-            // clickRain.addActionListener(new ActionListener(){
-            //     private int chk = 0;
-            //     public void actionPerformed(ActionEvent cr)
-            //     {
-            //         if(chk == 0)
-            //         {
-            //             chk = 1;
-            //             frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            //             chkstate = 101;
-            //         }
-            //         else
-            //         {
-            //             chk = 0;
-            //             frame.setCursor(Cursor.getDefaultCursor());
-            //             chkstate = 102;
-            //         }
-            //     }
-            // });
-
-            // navbar.add(openFile);
-            // navbar.add(saveFile);
-            // navbar.add(clearFile);
-            // navbar.add(clickRain);
-            // navbar.add(RandomkRain);
-            // navbar.add(btnBack);
-    //         // ข้อมูลด้านใน
-            // JPanel panelDatas = new JPanel();
-            // panelDatas.setBounds(10, 50, 980, 600);
-            // // panelDatas.setBackground(new Color(0, 255, 50));
-            // panelDatas.setBorder(new LineBorder(Color.BLACK));
-            // panelDatas.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
-            // for(int i=0;i<datas.size();i++){
-            //     JPanel rowDatas = new JPanel();
-            //     rowDatas.setLayout(new GridLayout());
-            //     for(int j=0;j<datas.get(i).size();j++){
-            //         JButton button = new JButton();
-            //         button.setBounds(0,0,50,50);
-            //         button.setCursor(new Cursor(JFrame.HAND_CURSOR));
-            //         button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
-            //         button.putClientProperty("row",i);
-            //         button.putClientProperty("col",j);
-            //         button.addActionListener(new ActionListener() {
-            //             public void actionPerformed(ActionEvent e) {
-            //                 JButton sourceButton = (JButton) e.getSource();
-            //                 int row = (int) sourceButton.getClientProperty("row");
-            //                 int col = (int) sourceButton.getClientProperty("col");
-            //                 if(chkstate == 101)
-            //                 {
-            //                     System.out.println(datas.get(row).get(col));
-            //                     System.out.println(datas);
-            //                 }
-            //                  methods.add_score(datas,row,col);
-            //                 // System.out.println(row+"_"+col);
-            //             }
-            //         });
-            //         rowDatas.add(button);
-            //     }
-            //     panelDatas.add(rowDatas);
-            // }
-    //         frame.add(navbar);
-    //         frame.add(panelDatas);
-    //         frame.setVisible(true);
-    //     });
-    // }
-    
 }
 
 class Navbar extends JPanel{
-    Navbar(App app){
+    Navbar(App app,){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
@@ -145,6 +37,29 @@ class Navbar extends JPanel{
         // JButton openFile = new JButton("open file");
         ButtonPink openFile = new ButtonPink("open file",1,1,1,1);
         openFile.setBounds(300,5,100,30);
+        openFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+
+                // ตั้งค่า default path เริ่มต้นที่ ./
+                fileChooser.setCurrentDirectory(new File("./"));
+
+                // ตั้งค่า File Filter เพื่อให้เห็นเฉพาะไฟล์ .txt
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt");
+                fileChooser.setFileFilter(filter);
+
+                // เปิด File Chooser dialog
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    JOptionPane.showMessageDialog(null, "Selected file: " + selectedFile.getAbsolutePath());
+                }
+            }
+        });
+
+
         // JButton saveFile = new JButton("save");
         ButtonPink saveFile = new ButtonPink("save",1,1,1,1);
         saveFile.setBounds(410,5,100,30);
@@ -189,17 +104,13 @@ class Navbar extends JPanel{
 
 class ShowDatas extends JPanel{
     static ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
-    private JPanel panel;
     static int chkstate = 0;
-
-    ShowDatas(App app){
-        this.panel = new JPanel();
-    }
+    ShowDatas(App app){}
     void setDatas(){
         About_Methods methods = new About_Methods();
-        panel.setBounds(10, 50, 980, 600);
-        panel.setBorder(new LineBorder(Color.BLACK));
-        panel.setLayout(new GridLayout(datas.size(),datas.get(0).size()));
+        setBounds(10, 50, 980, 600);
+        setBorder(new LineBorder(Color.BLACK));
+        setLayout(new GridLayout(datas.size(),datas.get(0).size()));
         for(int i=0;i<datas.size();i++){
             JPanel rowDatas = new JPanel();
             rowDatas.setLayout(new GridLayout());
@@ -226,7 +137,7 @@ class ShowDatas extends JPanel{
                 });
                 rowDatas.add(button);
             }
-            panel.add(rowDatas);
+            add(rowDatas);
         }
     }
     void readFile(){
@@ -278,7 +189,6 @@ class About_Methods {
             panelDatas.add(rowDatas);
         }
     }
-    
     Color getColor(float persen){
         if(persen>30){
             return new Color(178,0,0);
