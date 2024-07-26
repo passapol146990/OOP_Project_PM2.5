@@ -156,6 +156,7 @@ class ShowDatas extends JPanel{
         try {
             // Scanner readFile = new Scanner(new File("./pm2.5.txt"));
             Scanner readFile = new Scanner(new File(path));
+            this.datas.clear();
             while (readFile.hasNext()) {
                 ArrayList <Float> datas_row = new ArrayList<Float>();
                 for (String i:readFile.nextLine().split("\t")) {
