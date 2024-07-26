@@ -11,103 +11,17 @@ import java.awt.event.ActionListener;
 
 
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 class StartPage extends JPanel{
     StartPage(App app){
-        // setLayout(new GridLayout(3,1));
         setLayout(null);
         ShowDatas showDatas = new ShowDatas(app);
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
         Navbar navbar = new Navbar(app,showDatas);
-        // showDatas.readFile();
-        // showDatas.setDatas();
         // showStatusArea.clickArea();
         add(navbar);
         add(showDatas);
         add(showStatusArea);
-    }
-}
-
-class Navbar extends JPanel{
-    Navbar(App app,ShowDatas showDatas){
-        setBounds(-1, 0,1280,40);
-        setBorder(new LineBorder(new Color(0,0,0)));
-        setLayout(null);
-
-        // JButton btnBack = new JButton("Back");
-        ButtonPink btnBack = new ButtonPink("Back",1,1,1,1);
-        btnBack.addActionListener(e->{app.showPanel("menu");});
-        btnBack.setBounds(5,5,100,30);
-        // btnBack.setCursor(new Cursor(JFrame.HAND_CURSOR));
-
-        // JButton openFile = new JButton("open file");
-        ButtonPink openFile = new ButtonPink("open file",1,1,1,1);
-        openFile.setBounds(300,5,100,30);
-        openFile.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-
-                // ตั้งค่า default path เริ่มต้นที่ ./
-                fileChooser.setCurrentDirectory(new File("./"));
-
-                // ตั้งค่า File Filter เพื่อให้เห็นเฉพาะไฟล์ .txt
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt");
-                fileChooser.setFileFilter(filter);
-
-                // เปิด File Chooser dialog
-                int result = fileChooser.showOpenDialog(null);
-
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    // JOptionPane.showMessageDialog(null, "Selected file: " + selectedFile.getAbsolutePath());
-                    showDatas.readFile(selectedFile.getAbsolutePath());
-                    showDatas.setDatas();
-                }
-            }
-        });
-
-
-        // JButton saveFile = new JButton("save");
-        // ButtonPink saveFile = new ButtonPink("save",1,1,1,1);
-        // saveFile.setBounds(410,5,100,30);
-        // JButton clearFile = new JButton("clear");
-        // ButtonPink clearFile = new ButtonPink("clear",1,1,1,1);
-        // clearFile.setBounds(520,5,100,30);
-
-        ImageIcon iconRain = new ImageIcon("./image/rain.png");
-        JButton clickRain = new JButton(new ImageIcon(iconRain.getImage().getScaledInstance(120,30,iconRain.getImage().SCALE_SMOOTH)));
-        clickRain.setBounds(950,5,120,30);
-        ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
-        JButton RandomkRain = new JButton(new ImageIcon(iconRandomRaid.getImage().getScaledInstance(120,30,iconRandomRaid.getImage().SCALE_SMOOTH)));
-        RandomkRain.setBounds(1100,5,120,30);
-        //clickRain Action
-        // clickRain.addActionListener(new ActionListener(){
-        //     private int chk = 0;
-        //     public void actionPerformed(ActionEvent cr)
-        //     {
-        //         if(chk == 0)
-        //         {
-        //             chk = 1;
-        //             frame.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        //             chkstate = 101;
-        //         }
-        //         else
-        //         {
-        //             chk = 0;
-        //             frame.setCursor(Cursor.getDefaultCursor());
-        //             chkstate = 102;
-        //         }
-        //     }
-        // });
-
-        add(openFile);
-        // add(saveFile);
-        // add(clearFile);
-        add(clickRain);
-        add(RandomkRain);
-        add(btnBack);
     }
 }
 
@@ -127,7 +41,6 @@ class ShowDatas extends JPanel{
             for(int j=0;j<this.datas.get(i).size();j++){
                 JButton button = new JButton();
                 button.setBounds(0,0,50,50);
-                // button.setCursor(new Cursor(JFrame.HAND_CURSOR));
                 button.setBackground(methods.getColor(methods.CaladerPerSen((float)this.datas.get(i).get(j))));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
@@ -142,7 +55,6 @@ class ShowDatas extends JPanel{
                             System.out.println(datas);
                         }
                         methods.add_score(datas,row,col);
-                        // System.out.println(row+"_"+col);
                     }
                 });
                 rowDatas.add(button);
@@ -154,7 +66,6 @@ class ShowDatas extends JPanel{
     }
     void readFile(String path){
         try {
-            // Scanner readFile = new Scanner(new File("./pm2.5.txt"));
             Scanner readFile = new Scanner(new File(path));
             this.datas.clear();
             while (readFile.hasNext()) {

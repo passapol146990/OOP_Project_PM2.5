@@ -1,6 +1,7 @@
 import java.awt.CardLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
 
@@ -11,11 +12,10 @@ public class App extends JFrame{
     App(String title){
         cardLayout = new CardLayout();
         this.mainPanel = new JPanel(cardLayout);
-
         setTitle(title);
         setBounds(50,50,1280,720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage("./bg.jpg"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("./image/Icon.jpg"));
         add(this.mainPanel);
         setVisible(true);
     }

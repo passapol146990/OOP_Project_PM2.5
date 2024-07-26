@@ -48,10 +48,7 @@ public class MenuPage extends JPanel {
         btnExit.addActionListener(e -> System.exit(0));
         add(btnExit,position);
 
-        btnStart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                app.showPanel("start");
-            }
-        });
+        btnStart.addActionListener(e->{app.showPanel("start");});
+        btnAbout.addActionListener(e->{app.showPanel("about");});
     }
 }

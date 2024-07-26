@@ -1,5 +1,6 @@
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
@@ -11,6 +12,7 @@ public class ButtonPink extends JButton{
         setFocusPainted(false);
         setBorder(BorderFactory.createEmptyBorder(T, L,B, R));
         setBackground(new Color(254,169,169));
+        setCursor(new Cursor(JFrame.HAND_CURSOR));
     }
     public ButtonPink(String text,Image image,int T,int L,int B,int R) {
         super(text);
@@ -19,6 +21,7 @@ public class ButtonPink extends JButton{
         setFocusPainted(false);
         setBorder(BorderFactory.createEmptyBorder(T, L,B, R));
         setBackground(new Color(254,169,169));
+        setCursor(new Cursor(JFrame.HAND_CURSOR));
     }
 
     @Override

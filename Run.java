@@ -4,7 +4,9 @@ public class Run {
 
         MenuPage menu = new MenuPage(app);
         StartPage startPage = new StartPage(app);
+        AboutPage aboutPage = new AboutPage(app);
         app.addPanel(menu,"menu");
         app.addPanel(startPage,"start");
+        app.addPanel(aboutPage,"about");
     }
 }
