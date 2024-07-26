@@ -1,3 +1,4 @@
+// หน้าสำหรับการทำงาน starting ระบบต่างๆ ฝนหลวง เปิดไฟล์
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -12,12 +13,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.border.Border;
 
-class StartPage extends JPanel{
-    StartPage(App app){
+class PageStart extends JPanel{
+    PageStart(App app){
         setLayout(null);
         ShowDatas showDatas = new ShowDatas(app);
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
-        Navbar navbar = new Navbar(app,showDatas);
+        CPN_Navbar navbar = new CPN_Navbar(app,showDatas);
         // showStatusArea.clickArea();
         add(navbar);
         add(showDatas);

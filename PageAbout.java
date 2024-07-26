@@ -1,3 +1,4 @@
+// หน้าสำหรับแสดงรายชื่อผู้พัฒนา
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -15,9 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class AboutPage extends JPanel{
-    AboutPage(App app){
-        Navbar navbar = new Navbar(app,"Organizer");
+public class PageAbout extends JPanel{
+    PageAbout(App app){
+        CPN_Navbar navbar = new CPN_Navbar(app,"Organizer");
         BodyAbout bodyAbout = new BodyAbout();
 
         setLayout(null);

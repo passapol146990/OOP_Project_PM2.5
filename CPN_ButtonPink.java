@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 
-public class ButtonPink extends JButton{
+public class CPN_ButtonPink extends JButton{
     private Image backgroundImage;
-    public ButtonPink(String text,int T,int L,int B,int R) {
+    public CPN_ButtonPink(String text,int T,int L,int B,int R) {
         super(text);
         setContentAreaFilled(false);    
         setFocusPainted(false);
@@ -14,7 +14,7 @@ public class ButtonPink extends JButton{
         setBackground(new Color(254,169,169));
         setCursor(new Cursor(JFrame.HAND_CURSOR));
     }
-    public ButtonPink(String text,Image image,int T,int L,int B,int R) {
+    public CPN_ButtonPink(String text,Image image,int T,int L,int B,int R) {
         super(text);
         this.backgroundImage = image;
         setContentAreaFilled(false);    

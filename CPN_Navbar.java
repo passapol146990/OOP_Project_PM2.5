@@ -1,3 +1,4 @@
+// แถบเมนูด้านบนของหน้า about, start
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -12,17 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-class Navbar extends JPanel{
-    Navbar(App app,ShowDatas showDatas){
+class CPN_Navbar extends JPanel{
+    CPN_Navbar(App app,ShowDatas showDatas){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
-        ButtonPink btnBack = new ButtonPink("Back",1,1,1,1);
+        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",1,1,1,1);
         btnBack.addActionListener(e->{app.showPanel("menu");});
         btnBack.setBounds(5,5,100,30);
 
-        ButtonPink openFile = new ButtonPink("open file",1,1,1,1);
+        CPN_ButtonPink openFile = new CPN_ButtonPink("open file",1,1,1,1);
         openFile.setBounds(300,5,100,30);
         openFile.addActionListener(new ActionListener() {
             @Override
@@ -93,11 +93,11 @@ class Navbar extends JPanel{
         add(btnBack);
     }
     
-    Navbar(App app,String title){
+    CPN_Navbar(App app,String title){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
-        ButtonPink btnBack = new ButtonPink("Back",1,1,1,1);
+        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",1,1,1,1);
         btnBack.addActionListener(e->{app.showPanel("menu");});
         btnBack.setBounds(5,5,100,30);
 
