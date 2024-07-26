@@ -18,11 +18,13 @@ class PageStart extends JPanel{
         setLayout(null);
         ShowDatas showDatas = new ShowDatas(app);
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
+        InputPeople inputPeople = new InputPeople();
         CPN_Navbar navbar = new CPN_Navbar(app,showDatas);
         // showStatusArea.clickArea();
         add(navbar);
         add(showDatas);
         add(showStatusArea);
+        add(inputPeople);
     }
 }
 
@@ -85,27 +87,27 @@ class ShowDatas extends JPanel{
 
 class ShowStatusArea extends JPanel{
     ShowStatusArea(App app){
-        setBounds(1000, 50, 250, 600);
+        setBounds(1000, 50, 250, 500);
         setBorder(new LineBorder(Color.BLACK));
 
-        ImageIcon icon_happy = new ImageIcon("./image/happy.png");
-        JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_sad = new ImageIcon("./image/sad.png");
+        // ImageIcon icon_happy = new ImageIcon("./image/happy.png");
+        // JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
+        // ImageIcon icon_sad = new ImageIcon("./image/sad.png");
         
-        JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_sick = new ImageIcon("./image/sick.png");
+        // JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
+        // ImageIcon icon_sick = new ImageIcon("./image/sick.png");
         
-        JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_normal = new ImageIcon("./image/normal.png");
+        // JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
+        // ImageIcon icon_normal = new ImageIcon("./image/normal.png");
         
-        JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
-        add(label_normal);
+        // JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
+        // add(label_normal);
         
-        // importข้อความ
-        Font font1= new Font("Tahoma",Font.BOLD,20);
-        JLabel label_text_feeling = new JLabel("<html><div style='text-align: start;width:180px;'>Pm2.5 "+ 5 + "%<br>People"+100+"<br>Healthy population "+99+"<br>Sick population "+1+"<br>Percentage of sick people "+1+"%</div></html>");
+        // // importข้อความ
+        // Font font1= new Font("Tahoma",Font.BOLD,20);
+        // JLabel label_text_feeling = new JLabel("<html><div style='text-align: start;width:180px;'>Pm2.5 "+ 5 + "%<br>People"+100+"<br>Healthy population "+99+"<br>Sick population "+1+"<br>Percentage of sick people "+1+"%</div></html>");
       
-        add(label_text_feeling);
+        // add(label_text_feeling);
     }
     void clickAreas(){
         JPanel pic_of_feeling = new JPanel();
@@ -138,6 +140,13 @@ class ShowStatusArea extends JPanel{
         label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
         panel_text_feeling.add(label_text_feeling);
         add(panel_text_feeling);
+    }
+}
+
+class InputPeople extends JPanel{
+    InputPeople(){
+        setBounds(1000, 570, 250, 100);
+        setBorder(new LineBorder(Color.BLACK));
     }
 }
 
