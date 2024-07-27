@@ -20,7 +20,6 @@ class PageStart extends JPanel{
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
         InputPeople inputPeople = new InputPeople();
         CPN_Navbar navbar = new CPN_Navbar(app,showDatas);
-        // showStatusArea.clickArea();
         add(navbar);
         add(showDatas);
         add(showStatusArea);
@@ -147,6 +146,12 @@ class InputPeople extends JPanel{
     InputPeople(){
         setBounds(1000, 570, 250, 100);
         setBorder(new LineBorder(Color.BLACK));
+        JLabel title = new JLabel("ประชากรระหว่าง");
+        title.setFont(new Font("Tahoma",Font.BOLD,20));
+        add(title);
+
+        JTextField inputMin = new JTextField();
+        add(inputMin);
     }
 }
 
