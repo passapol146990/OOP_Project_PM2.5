@@ -28,7 +28,7 @@ class PageStart extends JPanel{
 }
 
 class ShowDatas extends JPanel{
-    public ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
+    public ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();//float[][] datas
     public int chkstate = 0;
     ShowDatas(App app){}
     void setDatas(){
@@ -66,6 +66,7 @@ class ShowDatas extends JPanel{
         revalidate();
         repaint();
     }
+    
     void readFile(String path){
         try {
             Scanner readFile = new Scanner(new File(path));
@@ -251,4 +252,33 @@ class About_Methods {
             System.out.println(i);
         }
     }
+    // void rainRoyal(ArrayList<ArrayList<Float>>datas,int x,int y){
+    //     if (y-1>=0) {
+    //             datas.get(x).set(y - 1, (float)datas.get(x).get(y - 1) - 1);
+    //         }
+    //         datas.get(x).set(y, (float)datas.get(x).get(y) - 1);
+    //         if (y+1<=19) {
+    //             datas.get(x).set(y + 1, (float)datas.get(x).get(y + 1) - 1);
+    //         }
+    //         // 
+    //         if (x-1>=0) {
+    //             if (y-1>=0) {
+    //                 datas.get(x - 1).set(y - 1, (float)datas.get(x-1).get(y - 1) - 1);
+    //             }
+    //             datas.get(x-1).set(y, (float)datas.get(x-1).get(y) - 1);
+    //             if (y+1<=19) {
+    //                 datas.get(x-1).set(y + 1, (float)datas.get(x-1).get(y + 1) - 1);
+    //             }
+    //         }
+    //         // 
+    //         if(x+1<=19) {
+    //             if (y-1>=0) {
+    //                 datas.get(x+1).set(y - 1, (float)datas.get(x+1).get(y - 1) - 1);
+    //             }
+    //             datas.get(x+1).set(y, (float)datas.get(x+1).get(y) - 1);
+    //             if (y+1<=19) {
+    //                 datas.get(x+1).set(y + 1, (float)datas.get(x+1).get(y + 1) - 1);
+    //             }
+    //         }
+    // }
 }
