@@ -27,21 +27,21 @@ public class PageMenu extends JPanel {
         position.fill = GridBagConstraints.HORIZONTAL;
         position.insets = new Insets(10, 0, 10, 0);
 
-        CPN_ButtonPink btnStart = new CPN_ButtonPink("start",21,85,21,85);
+        CPN_ButtonPink btnStart = new CPN_ButtonPink("start",new Color(254,169,169));
         btnStart.setPreferredSize(new Dimension(300, 75));
         btnStart.setFont(new Font("Tahoma",Font.BOLD,25));
         position.gridx = 0;
         position.gridy = 1;
         add(btnStart,position);
 
-        CPN_ButtonPink btnAbout = new CPN_ButtonPink("about",21,85,21,85);
+        CPN_ButtonPink btnAbout = new CPN_ButtonPink("about",new Color(254,169,169));
         btnAbout.setPreferredSize(new Dimension(300, 75));
         btnAbout.setFont(new Font("Tahoma",Font.BOLD,25));
         position.gridx = 0;
         position.gridy = 2;
         add(btnAbout,position);
 
-        CPN_ButtonPink btnExit = new CPN_ButtonPink("exit",21,85,21,85);
+        CPN_ButtonPink btnExit = new CPN_ButtonPink("exit",new Color(254,169,169));
         btnExit.setPreferredSize(new Dimension(300, 75));
         btnExit.setFont(new Font("Tahoma",Font.BOLD,25));
         position.gridx = 0;

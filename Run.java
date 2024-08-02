@@ -2,7 +2,7 @@
 public class Run {
     public static void main(String[] args){
         App app = new App("PM2.5");
-
+        
         PageMenu menu = new PageMenu(app);
         PageStart startPage = new PageStart(app);
         PageAbout aboutPage = new PageAbout(app);   
