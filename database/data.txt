@@ -1,1 +1,0 @@
-peoplemin=0,peoplemax=100

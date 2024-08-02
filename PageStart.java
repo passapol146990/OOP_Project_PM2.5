@@ -4,10 +4,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,10 +14,11 @@ import javax.swing.border.Border;
 class PageStart extends JPanel{
     PageStart(App app){
         setLayout(null);
+        DataBase db = new DataBase();
         ShowDatas showDatas = new ShowDatas(app);
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
-        InputPeople inputPeople = new InputPeople();
-        CPN_Navbar navbar = new CPN_Navbar(app,showDatas);
+        InputPeople inputPeople = new InputPeople(db);
+        CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
         add(navbar);
         add(showDatas);
         add(showStatusArea);
@@ -29,10 +27,9 @@ class PageStart extends JPanel{
 }
 
 class ShowDatas extends JPanel{
-    public float[][] datas;//ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>()
     public int chkstate = 0;
     ShowDatas(App app){}
-    void setDatas(){
+    void setDatas(float[][] datas){
         About_Methods methods = new About_Methods();
         removeAll();
         setBounds(10, 50, 980, 600);
@@ -66,26 +63,6 @@ class ShowDatas extends JPanel{
         }
         revalidate();
         repaint();
-    }
-    
-    void readFile(String path){
-        try {
-            Scanner readFile = new Scanner(new File(path));
-            //this.datas.clear();
-            ArrayList<float[]> tempData = new ArrayList<>();
-            while (readFile.hasNext()) {
-                String[] line = readFile.nextLine().split("\t");
-                float[] datas_row = new float[line.length];
-                for (int i = 0; i < line.length; i++) {
-                    datas_row[i] = Float.parseFloat(line[i]);
-                }
-                tempData.add(datas_row);
-            }
-            datas = tempData.toArray(new float[tempData.size()][]);
-        } 
-        catch (Exception e) {
-            System.out.println(e);
-        }
     }
 }
 
@@ -148,10 +125,9 @@ class ShowStatusArea extends JPanel{
 }
 
 class InputPeople extends JPanel{
-    InputPeople(){
+    InputPeople(DataBase db){
         setBounds(1000, 570, 250, 100);
         setBorder(new LineBorder(Color.BLACK));
-        // setLayout(new FlowLayout(FlowLayout.CENTER));
         setLayout(null);
 
         JLabel title = new JLabel("ประชากรระหว่าง");
@@ -291,9 +267,6 @@ class About_Methods {
             }
         }
     }
-
-
-
     // void rainRoyal(ArrayList<ArrayList<Float>>datas,int x,int y){
     //     if (y-1>=0) {
     //             datas.get(x).set(y - 1, (float)datas.get(x).get(y - 1) - 1);

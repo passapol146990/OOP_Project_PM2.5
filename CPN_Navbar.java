@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 class CPN_Navbar extends JPanel{
-    CPN_Navbar(App app,ShowDatas showDatas){
+    CPN_Navbar(App app,DataBase db,ShowDatas showDatas){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
@@ -41,9 +41,8 @@ class CPN_Navbar extends JPanel{
 
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    // JOptionPane.showMessageDialog(null, "Selected file: " + selectedFile.getAbsolutePath());
-                    showDatas.readFile(selectedFile.getAbsolutePath());
-                    showDatas.setDatas();
+                    db.readFile(selectedFile.getAbsolutePath());
+                    showDatas.setDatas(db.getDatas());
                 }
             }
         });
