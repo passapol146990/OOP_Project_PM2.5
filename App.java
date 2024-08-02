@@ -16,6 +16,7 @@ public class App extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage("./image/Icon.jpg"));
         add(this.mainPanel);
+        setResizable(false);
         setVisible(true);
     }
     // เมธอดเพิ่มหน้าต่าง รับพารามิเตอร์ JPanel,ชื่อหน้าต่าง เพิ่มหน้าที่ต้องการเปลี่ยนและเส้นทางในการเปลี่ยนหน้าต่าง

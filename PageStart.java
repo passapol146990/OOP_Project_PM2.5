@@ -146,12 +146,23 @@ class InputPeople extends JPanel{
     InputPeople(){
         setBounds(1000, 570, 250, 100);
         setBorder(new LineBorder(Color.BLACK));
+        // setLayout(new FlowLayout(FlowLayout.CENTER));
+        setLayout(null);
+
         JLabel title = new JLabel("ประชากรระหว่าง");
         title.setFont(new Font("Tahoma",Font.BOLD,20));
+        title.setBounds(50,0,250,30);
         add(title);
 
-        JTextField inputMin = new JTextField();
+        JTextField inputMin = new JTextField("0");
+        inputMin.setBounds(10,50,100,25);
         add(inputMin);
+        JLabel label = new JLabel(" - ");
+        label.setBounds(115,50,100,25);
+        add(label);
+        JTextField inputMax = new JTextField("100");
+        inputMax.setBounds(130,50,100,25);
+        add(inputMax);
     }
 }
 
