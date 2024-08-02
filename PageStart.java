@@ -6,6 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,7 @@ class PageStart extends JPanel{
 }
 
 class ShowDatas extends JPanel{
-    public ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();//float[][] datas
+    public float[][] datas;//ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>()
     public int chkstate = 0;
     ShowDatas(App app){}
     void setDatas(){
@@ -36,14 +37,14 @@ class ShowDatas extends JPanel{
         removeAll();
         setBounds(10, 50, 980, 600);
         setBorder(new LineBorder(Color.BLACK));
-        setLayout(new GridLayout(this.datas.size(),this.datas.get(0).size()));
-        for(int i=0;i<this.datas.size();i++){
+        setLayout(new GridLayout(datas.length, datas[0].length));
+        for(int i=0;i<datas.length;i++){
             JPanel rowDatas = new JPanel();
             rowDatas.setLayout(new GridLayout());
-            for(int j=0;j<this.datas.get(i).size();j++){
+            for(int j=0;j<datas[i].length;j++){
                 JButton button = new JButton();
                 button.setBounds(0,0,50,50);
-                button.setBackground(methods.getColor(methods.CaladerPerSen((float)this.datas.get(i).get(j))));
+                button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
                 button.addActionListener(new ActionListener() {
@@ -53,7 +54,7 @@ class ShowDatas extends JPanel{
                         int col = (int) sourceButton.getClientProperty("col");
                         if(chkstate == 101)
                         {
-                            System.out.println(datas.get(row).get(col));
+                            System.out.println(datas[row][col]);
                             System.out.println(datas);
                         }
                         methods.add_score(datas,row,col);
@@ -70,16 +71,19 @@ class ShowDatas extends JPanel{
     void readFile(String path){
         try {
             Scanner readFile = new Scanner(new File(path));
-            this.datas.clear();
+            //this.datas.clear();
+            ArrayList<float[]> tempData = new ArrayList<>();
             while (readFile.hasNext()) {
-                ArrayList <Float> datas_row = new ArrayList<Float>();
-                for (String i:readFile.nextLine().split("\t")) {
-                    float f=Float.parseFloat(i); 
-                    datas_row.add(f);
+                String[] line = readFile.nextLine().split("\t");
+                float[] datas_row = new float[line.length];
+                for (int i = 0; i < line.length; i++) {
+                    datas_row[i] = Float.parseFloat(line[i]);
                 }
-                datas.add(datas_row);
+                tempData.add(datas_row);
             }
-        } catch (Exception e) {
+            datas = tempData.toArray(new float[tempData.size()][]);
+        } 
+        catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -157,15 +161,15 @@ class InputPeople extends JPanel{
 }
 
 class About_Methods {
-    void setDatas(ArrayList<ArrayList<Float>>datas,JPanel panelDatas){
+    void setDatas(float[][] datas, JPanel panelDatas){
         About_Methods methods = new About_Methods();
-        for(int i=0;i<datas.size();i++){
+        for(int i=0;i<datas.length;i++){
             JPanel rowDatas = new JPanel();
             rowDatas.setLayout(new GridLayout());
-            for(int j=0;j<datas.get(i).size();j++){
+            for(int j=0;j<datas[i].length;j++){
                 JButton button = new JButton();
                 button.setBounds(0,0,50,50);
-                button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas.get(i).get(j))));
+                button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
                 button.addActionListener(new ActionListener() {
@@ -212,46 +216,66 @@ class About_Methods {
         }  
         return persen;
     }
-    void add_score(ArrayList<ArrayList<Float>>datas,int x,int y){
-        ArrayList<ArrayList<Float>>lists = new ArrayList<ArrayList<Float>>();
+    void add_score(float[][] datas, int x, int y){
+        int rows = datas.length;
+        int cols = datas[0].length;
+        int resultSize = 3; // Size of the result array
+        float[][] result = new float[resultSize][resultSize];
+    
+        // Initialize result array with -1 or any placeholder
+        for (int i = 0; i < resultSize; i++) {
+            Arrays.fill(result[i], -1); // Use -1 to indicate empty values
+        }
+    
+        // Fill the result array
+        int resultRow = 0;
         // on data
-        if (x-1>=0) {
-            ArrayList<Float>on = new ArrayList<Float>();
-            if (y-1>=0) {
-                on.add((Float)datas.get(x-1).get(y-1));
-            }
-            on.add((Float)datas.get(x-1).get(y));
-            if (y+1<=19) {
-                on.add((Float)datas.get(x-1).get(y+1));
-            }
-            lists.add(on);
+        if (x - 1 >= 0) {
+            int resultCol = 0;
+            if (y - 1 >= 0) result[resultRow][resultCol++] = datas[x - 1][y - 1];
+            result[resultRow][resultCol++] = datas[x - 1][y];
+            if (y + 1 < cols) result[resultRow][resultCol] = datas[x - 1][y + 1];
+            resultRow++;
         }
+    
         // center data
-        ArrayList<Float>center = new ArrayList<Float>();
-        if (y-1>=0) {
-            center.add((Float)datas.get(x).get(y-1));
-        }
-            center.add((Float)datas.get(x).get(y));
-        if (y+1<=19) {
-            center.add((Float)datas.get(x).get(y+1));
-        }
-        lists.add(center);
+        int centerRow = resultRow;
+        int centerCol = 0;
+        if (y - 1 >= 0) result[centerRow][centerCol++] = datas[x][y - 1];
+        result[centerRow][centerCol++] = datas[x][y];
+        if (y + 1 < cols) result[centerRow][centerCol] = datas[x][y + 1];
+        resultRow++;
+    
         // under data
-        if(x>=0 && x+1<=9) {
-            ArrayList<Float>under = new ArrayList<Float>();
-            if (y-1>=0) {
-                under.add((Float)datas.get(x+1).get(y-1));
-            }
-            under.add((Float)datas.get(x+1).get(y));
-            if (y+1<=19) {
-                under.add((Float)datas.get(x+1).get(y+1));
-            }
-            lists.add(under);
+        if (x + 1 < rows) {
+            int underRow = resultRow;
+            int underCol = 0;
+            if (y - 1 >= 0) result[underRow][underCol++] = datas[x + 1][y - 1];
+            result[underRow][underCol++] = datas[x + 1][y];
+            if (y + 1 < cols) result[underRow][underCol] = datas[x + 1][y + 1];
         }
-        for(ArrayList<Float>i : lists){
-            System.out.println(i);
+    
+        // Print the result array, skipping -1 values
+        for (float[] row : result) {
+            boolean hasNonEmptyValue = false;
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (float value : row) {
+                if (value != -1) {
+                    sb.append(value).append(" ");
+                    hasNonEmptyValue = true;
+                }
+            }
+            sb.append("]");
+            if(hasNonEmptyValue)
+            {
+                System.out.println(sb.toString());
+            }
         }
     }
+
+
+
     // void rainRoyal(ArrayList<ArrayList<Float>>datas,int x,int y){
     //     if (y-1>=0) {
     //             datas.get(x).set(y - 1, (float)datas.get(x).get(y - 1) - 1);
