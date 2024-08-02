@@ -88,7 +88,10 @@ class ShowStatusArea extends JPanel{
     ShowStatusArea(App app){
         setBounds(1000, 50, 250, 500);
         setBorder(new LineBorder(Color.BLACK));
-
+        
+        ArrayList <ArrayList<Float>> datas = new ArrayList<ArrayList<Float>>();
+       
+        
         // ImageIcon icon_happy = new ImageIcon("./image/happy.png");
         // JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
         // ImageIcon icon_sad = new ImageIcon("./image/sad.png");
@@ -141,6 +144,7 @@ class ShowStatusArea extends JPanel{
         add(panel_text_feeling);
     }
 }
+
 
 class InputPeople extends JPanel{
     InputPeople(){
