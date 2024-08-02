@@ -45,20 +45,13 @@ public class DataBase {
     int getMaxPeople(){
         return this.peoplemax;
     }
-    void setMinPeople(int x){
-        this.peoplemin = x;
+    void  setMinMaxPeople(int x1,int x2){
+        this.peoplemin = x1;
+        this.peoplemax = x2;
         try{
             FileWriter fw = new FileWriter("./database/data.txt");
             fw.write("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
-            fw.close();
-        }catch(Exception e){}
-    }
-    void setMaxPeople(int x){
-        this.peoplemax = x;
-        this.peoplemin = x;
-        try{
-            FileWriter fw = new FileWriter("./database/data.txt");
-            fw.write("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
+            System.out.println("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
             fw.close();
         }catch(Exception e){}
     }

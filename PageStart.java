@@ -1,7 +1,6 @@
 // หน้าสำหรับการทำงาน starting ระบบต่างๆ ฝนหลวง เปิดไฟล์
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -136,14 +135,29 @@ class InputPeople extends JPanel{
         add(title);
 
         JTextField inputMin = new JTextField("0");
-        inputMin.setBounds(10,50,100,25);
+        inputMin.setBounds(10,40,100,25);
         add(inputMin);
         JLabel label = new JLabel(" - ");
-        label.setBounds(115,50,100,25);
+        label.setBounds(115,40,100,25);
         add(label);
         JTextField inputMax = new JTextField("100");
-        inputMax.setBounds(130,50,100,25);
+        inputMax.setBounds(130,40,100,25);
         add(inputMax);
+        CPN_ButtonPink save = new CPN_ButtonPink("save",new Color(254,169,169));
+        save.setBounds(70,70,100,25);
+        add(save);
+        save.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
+            }
+        });
+        // inputMax.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         String text = inputMin.getText();
+        //         System.out.println(text);
+        //  60       inputMin.setText("");
+        //     }
+        // });
     }
 }
 

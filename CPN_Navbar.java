@@ -18,11 +18,11 @@ class CPN_Navbar extends JPanel{
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
-        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",1,1,1,1);
+        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",new Color(254,169,169));
         btnBack.addActionListener(e->{app.showPanel("menu");});
         btnBack.setBounds(5,5,100,30);
 
-        CPN_ButtonPink openFile = new CPN_ButtonPink("open file",1,1,1,1);
+        CPN_ButtonPink openFile = new CPN_ButtonPink("open file",new Color(254,169,169));
         openFile.setBounds(300,5,100,30);
         openFile.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +96,7 @@ class CPN_Navbar extends JPanel{
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
-        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",1,1,1,1);
+        CPN_ButtonPink btnBack = new CPN_ButtonPink("Back",new Color(254,169,169));
         btnBack.addActionListener(e->{app.showPanel("menu");});
         btnBack.setBounds(5,5,100,30);
 
