@@ -42,7 +42,7 @@ class CPN_Navbar extends JPanel{
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
                     db.readFile(selectedFile.getAbsolutePath());
-                    showDatas.setDatas(db.getDatas());
+                    showDatas.setDatas(db);
                 }
             }
         });
@@ -59,11 +59,19 @@ class CPN_Navbar extends JPanel{
         JButton clickRain = new JButton(new ImageIcon(iconRain.getImage().getScaledInstance(120,30,iconRain.getImage().SCALE_SMOOTH)));
         clickRain.setBounds(950,5,120,30);
         clickRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
+        clickRain.addActionListener(e->{
+            showDatas.setClickRainStatus(true);
+        });
 
         ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
         JButton RandomkRain = new JButton(new ImageIcon(iconRandomRaid.getImage().getScaledInstance(120,30,iconRandomRaid.getImage().SCALE_SMOOTH)));
         RandomkRain.setBounds(1100,5,120,30);
         RandomkRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
+        RandomkRain.addActionListener(e->{
+            db.randomRain();
+            showDatas.setDatas(db);
+        });
+        
         //clickRain Action
         // clickRain.addActionListener(new ActionListener(){
         //     private int chk = 0;

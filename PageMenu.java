@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PageMenu extends JPanel {
-    int save = 0;
     PageMenu(App app){
         setLayout(new GridBagLayout());
         GridBagConstraints position = new GridBagConstraints();

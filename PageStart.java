@@ -26,9 +26,13 @@ class PageStart extends JPanel{
 }
 
 class ShowDatas extends JPanel{
-    public int chkstate = 0;
+    private boolean checkstateClickRain = false;
     ShowDatas(App app){}
-    void setDatas(float[][] datas){
+    void setClickRainStatus(boolean chk){
+        this.checkstateClickRain = chk;
+    }
+    void setDatas(DataBase db){
+        float[][] datas = db.getDatas();
         About_Methods methods = new About_Methods();
         removeAll();
         setBounds(10, 50, 980, 600);
@@ -43,17 +47,21 @@ class ShowDatas extends JPanel{
                 button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
+
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         JButton sourceButton = (JButton) e.getSource();
                         int row = (int) sourceButton.getClientProperty("row");
                         int col = (int) sourceButton.getClientProperty("col");
-                        if(chkstate == 101)
-                        {
-                            System.out.println(datas[row][col]);
-                            System.out.println(datas);
+                        System.out.println(checkstateClickRain);;
+                        if(checkstateClickRain){
+                            // กดฝนหลวง
+                            db.rainClick(row,col);
+                            // setDatas(db.getDatas());
+                            checkstateClickRain = false;
+                        }else{
+                            // methods.add_score(datas,row,col);
                         }
-                        methods.add_score(datas,row,col);
                     }
                 });
                 rowDatas.add(button);
@@ -134,23 +142,25 @@ class InputPeople extends JPanel{
         title.setBounds(50,0,250,30);
         add(title);
 
-        JTextField inputMin = new JTextField("0");
+        JTextField inputMin = new JTextField(String.valueOf(db.getMinPeople()));
         inputMin.setBounds(10,40,100,25);
         add(inputMin);
         JLabel label = new JLabel(" - ");
         label.setBounds(115,40,100,25);
         add(label);
-        JTextField inputMax = new JTextField("100");
+        JTextField inputMax = new JTextField(String.valueOf(db.getMaxPeople()));
         inputMax.setBounds(130,40,100,25);
         add(inputMax);
         CPN_ButtonPink save = new CPN_ButtonPink("save",new Color(254,169,169));
         save.setBounds(70,70,100,25);
         add(save);
-        save.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
-            }
+        save.addActionListener(e->{
+            db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
         });
+        // save.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent event) {
+        //     }
+        // });
         // inputMax.addActionListener(new ActionListener() {
         //     public void actionPerformed(ActionEvent e) {
         //         String text = inputMin.getText();

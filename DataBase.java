@@ -51,7 +51,6 @@ public class DataBase {
         try{
             FileWriter fw = new FileWriter("./database/data.txt");
             fw.write("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
-            System.out.println("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
             fw.close();
         }catch(Exception e){}
     }
@@ -75,6 +74,23 @@ public class DataBase {
         } 
         catch (Exception e) {
             System.out.println(e);
+        }
+    }
+    void randomRain(){
+        for(int i=0; i<this.datas.length; i++) {
+            for(int j=0; j<this.datas[i].length;j++){
+                this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
+            }
+        }
+    }
+    void rainClick(int row,int col){
+        this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
+                    data_tr.setPm25(i,j,(int) (this.pm25[i][j] * 0.7));
+                }
+            }
         }
     }
 }
