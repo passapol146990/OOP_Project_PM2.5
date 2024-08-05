@@ -29,6 +29,7 @@ class ShowDatas extends JPanel{
     private boolean checkstateClickRain = false;
     public int chkstate = 0;
     private ShowStatusArea showStatusArea;
+    public int all_people = 0;
     ShowDatas(App app){}
     void setClickRainStatus(boolean chk){
         this.checkstateClickRain = chk;
@@ -52,13 +53,16 @@ class ShowDatas extends JPanel{
                 button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
-
+                int random = db.getRandomPeople();
+                button.putClientProperty("people",random);
                 button.putClientProperty("persen",methods.CaladerPerSen((float)datas[i][j]));
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         JButton sourceButton = (JButton) e.getSource();
                         int row = (int) sourceButton.getClientProperty("row");
                         int col = (int) sourceButton.getClientProperty("col");
+                        int people_random = (int) sourceButton.getClientProperty("people");
+                        
                         System.out.println(checkstateClickRain);;
                         if(checkstateClickRain){
                             // กดฝนหลวง
@@ -81,7 +85,8 @@ class ShowDatas extends JPanel{
                     }
                 });
                 button.addActionListener(e->{
-                    showStatusArea.set_status((float)((JButton)e.getSource()).getClientProperty("persen"));
+                    showStatusArea.set_status((float)((JButton)e.getSource()).getClientProperty("persen"),(int)((JButton)e.getSource()).getClientProperty("people"),db,(int)((JButton)e.getSource()).getClientProperty("row"),(int)((JButton)e.getSource()).getClientProperty("col"));
+                    
                 });
                 rowDatas.add(button);
             }
@@ -97,44 +102,9 @@ class ShowStatusArea extends JPanel{
         setBounds(1000, 50, 250, 500);
         setBorder(new LineBorder(Color.BLACK));
     }
-    void clickAreas(){
-
-        JPanel pic_of_feeling = new JPanel();
-        pic_of_feeling.setLayout(new FlowLayout());
-        pic_of_feeling.setBounds(1000,50 , 250, 250);
-        ImageIcon icon_happy = new ImageIcon("./image/happy.png");
-        JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_sad = new ImageIcon("./image/sad.png");
-        JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_sick = new ImageIcon("./image/sick.png");
-        JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
-        ImageIcon icon_normal = new ImageIcon("./image/normal.png");
-        JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
-        Border O = BorderFactory.createLineBorder(Color.BLACK,2);
-        Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
-        pic_of_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
-        pic_of_feeling.add(label_sick);
-        add(pic_of_feeling);
-        
-        // importข้อความ
-        JPanel panel_text_feeling = new JPanel();
-        Font font_text= new Font("Tahoma",Font.BOLD,20);
-        panel_text_feeling.setBounds(1000,301 , 250, 350);
-        panel_text_feeling.setLayout(new FlowLayout());
-        panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
-        JLabel label_text_feeling = new JLabel();
-        label_text_feeling.setFont(font_text);
-        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+ 5 + "%<br>ประชากกรทั้งหมด"+100+" คน<br>ประชากรที่สุขภาพดี "+99+" คน<br>ประชากรที่ป่วย "+1+" คน<br>ร้อยละคนป่วย "+1+"%</div></html>");
-        label_text_feeling.setVerticalAlignment(JLabel.CENTER);
-        label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
-        panel_text_feeling.add(label_text_feeling);
-        add(panel_text_feeling);
-        
-       
-        
-    }
-    void set_status(float persen)
+    void set_status(float persen,int people,DataBase db,int row,int col)
     {
+        float[][] datas = db.getDatas();
         JPanel pic_of_feeling = new JPanel();
         pic_of_feeling.setLayout(new FlowLayout());
         pic_of_feeling.setBounds(1000,50 , 250, 250);
@@ -148,25 +118,25 @@ class ShowStatusArea extends JPanel{
         JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
         Border O = BorderFactory.createLineBorder(Color.BLACK,2);
         Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
-       
-        
-        
         
         // importข้อความ
         JPanel panel_text_feeling = new JPanel();
-        Font font_text= new Font("Tahoma",Font.BOLD,20);
+        Font font_text= new Font("Tahoma",Font.BOLD,18);
         panel_text_feeling.setBounds(1000,301 , 250, 350);
         panel_text_feeling.setLayout(new FlowLayout());
         panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
         JLabel label_text_feeling = new JLabel();
         label_text_feeling.setFont(font_text);
+        //คำนวณค่าประชากร
         String formatted = String.format("%.2f", persen);
-        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+ formatted + "%<br>ประชากกรทั้งหมด"+100+" คน<br>ประชากรที่สุขภาพดี "+99+" คน<br>ประชากรที่ป่วย "+1+" คน<br>ร้อยละคนป่วย "+1+"%</div></html>");
+        int sick_people = (int)(people*persen)/100;
+        int good_people = people-sick_people;
+        float pm = (float)datas[row][col];
+        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+pm+ "<br>ประชากกรทั้งหมด"+people+" คน<br>ประชากรที่สุขภาพดี "+good_people+" คน<br>ประชากรที่ป่วย "+sick_people+" คน<br>ร้อยละคนป่วย "+formatted+"%</div></html>");
         label_text_feeling.setVerticalAlignment(JLabel.CENTER);
         label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
-        panel_text_feeling.add(label_text_feeling);
-        panel_text_feeling.setBackground(getBackground());
         
+        panel_text_feeling.setBackground(getBackground());
         removeAll();
         if (persen >= 30 ) {
            
@@ -183,7 +153,11 @@ class ShowStatusArea extends JPanel{
            
             pic_of_feeling.add(label_happy);
         }
-       
+        else{
+            
+            label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+0 + "<br>ประชากกรทั้งหมด"+0+" คน<br>ประชากรที่สุขภาพดี "+0+" คน<br>ประชากรที่ป่วย "+0+" คน<br>ร้อยละคนป่วย "+0+"%</div></html>");
+        }
+        panel_text_feeling.add(label_text_feeling);
         add(pic_of_feeling);
         add(panel_text_feeling);
         revalidate();
@@ -271,11 +245,11 @@ class About_Methods {
         }
     }
     Color getColor(float persen){
-        if(persen>30){
+        if(persen>=30){
             return new Color(178,0,0);
-        }else if(persen>20){
+        }else if(persen>=20){
             return new Color(255,61,0);
-        }else if(persen>10){
+        }else if(persen>=10){
             return new Color(208,212,5);
         }
         else if (persen<0) {
