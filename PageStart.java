@@ -18,7 +18,7 @@ class PageStart extends JPanel{
         InputPeople inputPeople = new InputPeople(db);
         ShowDatas showDatas = new ShowDatas(app,showStatusArea);
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
-        //refresh page by setShowDataclass and data by setDBclass
+        //set new ShowDatas by setShowDataclass and set new db by setDBclass
         db.setShowDataclass(showDatas);
         showDatas.setDBclass(db);
         add(navbar);
@@ -44,7 +44,6 @@ class ShowDatas extends JPanel{
     // set new DataBase 
     void setDBclass(DataBase db){
         this.db = db;
-        System.out.println(db);
     }
     void setDatas(){
         float[][] datas = this.db.getDatas();

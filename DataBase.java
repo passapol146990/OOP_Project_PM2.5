@@ -95,7 +95,7 @@ public class DataBase {
         }
         this.SD.setDatas();
     }
-
+    //set new ShowDatas
     void setShowDataclass(ShowDatas sd){
         this.SD = sd;
     }
