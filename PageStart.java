@@ -14,9 +14,9 @@ class PageStart extends JPanel{
     PageStart(App app){
         setLayout(null);
         DataBase db = new DataBase();
-        ShowDatas showDatas = new ShowDatas(app);
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
         InputPeople inputPeople = new InputPeople(db);
+        ShowDatas showDatas = new ShowDatas(app,showStatusArea);
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
         add(navbar);
         add(showDatas);
@@ -27,9 +27,14 @@ class PageStart extends JPanel{
 
 class ShowDatas extends JPanel{
     private boolean checkstateClickRain = false;
+    public int chkstate = 0;
+    private ShowStatusArea showStatusArea;
     ShowDatas(App app){}
     void setClickRainStatus(boolean chk){
         this.checkstateClickRain = chk;
+    }
+    ShowDatas(App app, ShowStatusArea showStatusArea){
+        this.showStatusArea = showStatusArea;
     }
     void setDatas(DataBase db){
         float[][] datas = db.getDatas();
@@ -48,6 +53,7 @@ class ShowDatas extends JPanel{
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
 
+                button.putClientProperty("persen",methods.CaladerPerSen((float)datas[i][j]));
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         JButton sourceButton = (JButton) e.getSource();
@@ -56,13 +62,26 @@ class ShowDatas extends JPanel{
                         System.out.println(checkstateClickRain);;
                         if(checkstateClickRain){
                             // กดฝนหลวง
-                            db.rainClick(row,col);
+                            // db.rainClick(row,col);
                             // setDatas(db.getDatas());
                             checkstateClickRain = false;
                         }else{
                             // methods.add_score(datas,row,col);
                         }
+                        // showStatusArea(sourceButton.getClientProperty("persen"));
+                        
+                        // if(chkstate == 101)
+                        // {
+                        //     System.out.println(datas.get(row).get(col));
+                        //     System.out.println(datas);
+                        // }
+                        // methods.add_score(datas,row,col);
+                        // show_status.clickAreas();
+                        // repaint();
                     }
+                });
+                button.addActionListener(e->{
+                    showStatusArea.set_status((float)((JButton)e.getSource()).getClientProperty("persen"));
                 });
                 rowDatas.add(button);
             }
@@ -77,27 +96,9 @@ class ShowStatusArea extends JPanel{
     ShowStatusArea(App app){
         setBounds(1000, 50, 250, 500);
         setBorder(new LineBorder(Color.BLACK));
-
-        // ImageIcon icon_happy = new ImageIcon("./image/happy.png");
-        // JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(240,240,icon_happy.getImage().SCALE_SMOOTH)));
-        // ImageIcon icon_sad = new ImageIcon("./image/sad.png");
-        
-        // JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(240,240,icon_sad.getImage().SCALE_SMOOTH)));
-        // ImageIcon icon_sick = new ImageIcon("./image/sick.png");
-        
-        // JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(240,240,icon_sick.getImage().SCALE_SMOOTH)));
-        // ImageIcon icon_normal = new ImageIcon("./image/normal.png");
-        
-        // JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(240,240,icon_normal.getImage().SCALE_SMOOTH)));
-        // add(label_normal);
-        
-        // // importข้อความ
-        // Font font1= new Font("Tahoma",Font.BOLD,20);
-        // JLabel label_text_feeling = new JLabel("<html><div style='text-align: start;width:180px;'>Pm2.5 "+ 5 + "%<br>People"+100+"<br>Healthy population "+99+"<br>Sick population "+1+"<br>Percentage of sick people "+1+"%</div></html>");
-      
-        // add(label_text_feeling);
     }
     void clickAreas(){
+
         JPanel pic_of_feeling = new JPanel();
         pic_of_feeling.setLayout(new FlowLayout());
         pic_of_feeling.setBounds(1000,50 , 250, 250);
@@ -128,8 +129,70 @@ class ShowStatusArea extends JPanel{
         label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
         panel_text_feeling.add(label_text_feeling);
         add(panel_text_feeling);
+        
+       
+        
+    }
+    void set_status(float persen)
+    {
+        JPanel pic_of_feeling = new JPanel();
+        pic_of_feeling.setLayout(new FlowLayout());
+        pic_of_feeling.setBounds(1000,50 , 250, 250);
+        ImageIcon icon_happy = new ImageIcon("./image/happy.png");
+        JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(200,200,icon_happy.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sad = new ImageIcon("./image/sad.png");
+        JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(200,200,icon_sad.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_sick = new ImageIcon("./image/sick.png");
+        JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(200,200,icon_sick.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_normal = new ImageIcon("./image/normal.png");
+        JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
+        Border O = BorderFactory.createLineBorder(Color.BLACK,2);
+        Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
+       
+        
+        
+        
+        // importข้อความ
+        JPanel panel_text_feeling = new JPanel();
+        Font font_text= new Font("Tahoma",Font.BOLD,20);
+        panel_text_feeling.setBounds(1000,301 , 250, 350);
+        panel_text_feeling.setLayout(new FlowLayout());
+        panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
+        JLabel label_text_feeling = new JLabel();
+        label_text_feeling.setFont(font_text);
+        String formatted = String.format("%.2f", persen);
+        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+ formatted + "%<br>ประชากกรทั้งหมด"+100+" คน<br>ประชากรที่สุขภาพดี "+99+" คน<br>ประชากรที่ป่วย "+1+" คน<br>ร้อยละคนป่วย "+1+"%</div></html>");
+        label_text_feeling.setVerticalAlignment(JLabel.CENTER);
+        label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
+        panel_text_feeling.add(label_text_feeling);
+        panel_text_feeling.setBackground(getBackground());
+        
+        removeAll();
+        if (persen >= 30 ) {
+           
+            pic_of_feeling.add(label_sick);
+        }
+        else if (persen >= 20 ) {
+           
+            pic_of_feeling.add(label_sad);
+        }
+        else if (persen >=10){
+            pic_of_feeling.add(label_normal);
+        }
+        else if (persen >=0){
+           
+            pic_of_feeling.add(label_happy);
+        }
+       
+        add(pic_of_feeling);
+        add(panel_text_feeling);
+        revalidate();
+        repaint();
+        
     }
 }
+
+
 
 class InputPeople extends JPanel{
     InputPeople(DataBase db){
@@ -183,13 +246,17 @@ class About_Methods {
                 button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
+                button.putClientProperty("persen",methods.CaladerPerSen((float)datas[i][j]));
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         JButton sourceButton = (JButton) e.getSource();
                         int row = (int) sourceButton.getClientProperty("row");
                         int col = (int) sourceButton.getClientProperty("col");
+                        int persen = (int) sourceButton.getClientProperty("persen");
                         // System.out.println(datas.get(row).get(col));
-                        methods.add_score(datas,row,col);
+                        System.out.println(persen);
+                        // methods.add_score(datas,row,col);
+                        
                     }
                 });
                 // JButton clearButton = new JButton("Clear Panel");
