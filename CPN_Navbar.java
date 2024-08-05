@@ -72,7 +72,9 @@ class CPN_Navbar extends JPanel{
             showDatas.setDatas(db);
         });
         
-        //clickRain Action
+        clickRain.addActionListener(e->{
+            showDatas.setClickRainStatus(true);
+        });
         // clickRain.addActionListener(new ActionListener(){
         //     private int chk = 0;
         //     public void actionPerformed(ActionEvent cr)

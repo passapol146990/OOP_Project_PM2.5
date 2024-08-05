@@ -83,14 +83,14 @@ public class DataBase {
             }
         }
     }
-    // void rainClick(int row,int col){
-    //     this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
-    //     for (int i = row - 1; i <= row + 1; i++) {
-    //         for (int j = col - 1; j <= col + 1; j++) {
-    //             if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
-    //                 data_tr.setPm25(i,j,(int) (this.pm25[i][j] * 0.7));
-    //             }
-    //         }
-    //     }
-    // }
+    void rainClick(int row,int col){
+        this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
+                    this.datas[i][j] =  ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.3);
+                }
+            }
+        }
+    }
 }
