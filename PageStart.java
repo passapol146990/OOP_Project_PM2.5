@@ -18,6 +18,8 @@ class PageStart extends JPanel{
         InputPeople inputPeople = new InputPeople(db);
         ShowDatas showDatas = new ShowDatas(app,showStatusArea);
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
+        showDatas.setShowDataclass(showDatas);
+        db.setDBclass(db);
         add(navbar);
         add(showDatas);
         add(showStatusArea);
@@ -29,6 +31,7 @@ class ShowDatas extends JPanel{
     private boolean checkstateClickRain = false;
     public int chkstate = 0;
     private ShowStatusArea showStatusArea;
+    private DataBase db;
     ShowDatas(App app){}
     void setClickRainStatus(boolean chk){
         this.checkstateClickRain = chk;
@@ -36,8 +39,8 @@ class ShowDatas extends JPanel{
     ShowDatas(App app, ShowStatusArea showStatusArea){
         this.showStatusArea = showStatusArea;
     }
-    void setDatas(DataBase db){
-        float[][] datas = db.getDatas();
+    void setDatas(){
+        float[][] datas = this.db.getDatas();
         About_Methods methods = new About_Methods();
         removeAll();
         setBounds(10, 50, 980, 600);
@@ -54,31 +57,7 @@ class ShowDatas extends JPanel{
                 button.putClientProperty("col",j);
 
                 button.putClientProperty("persen",methods.CaladerPerSen((float)datas[i][j]));
-                // button.addActionListener(new ActionListener() {
-                //     public void actionPerformed(ActionEvent e) {
-                //         JButton sourceButton = (JButton) e.getSource();
-                //         int row = (int) sourceButton.getClientProperty("row");
-                //         int col = (int) sourceButton.getClientProperty("col");
-                //         System.out.println(checkstateClickRain);;
-                //         if(checkstateClickRain){
-                //             // กดฝนหลวง
-                //             db.rainClick(row,col);
-                //             // setDatas(db.getDatas());
-                //             checkstateClickRain = false;
-                //         }else{
-                //             // methods.add_score(datas,row,col);
-                //         }
-                //         // showStatusArea(sourceButton.getClientProperty("persen"));
-                //         // if(chkstate == 101)
-                //         // {
-                //         //     System.out.println(datas.get(row).get(col));
-                //         //     System.out.println(datas);
-                //         // }
-                //         // methods.add_score(datas,row,col);
-                //         // show_status.clickAreas();
-                //         // repaint();
-                //     }
-                // });
+                
                 button.addActionListener(e->{
                     showStatusArea.set_status((float)((JButton)e.getSource()).getClientProperty("persen"));
                     JButton sourceButton = (JButton) e.getSource();
@@ -88,7 +67,6 @@ class ShowDatas extends JPanel{
                     // กดฝนหลวง
                     if(checkstateClickRain){
                         db.rainClick(row,col);
-                        // setDatas(db.getDatas());
                         checkstateClickRain = false;
                     }else{
                         // methods.add_score(datas,row,col);

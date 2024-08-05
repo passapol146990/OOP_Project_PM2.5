@@ -11,6 +11,8 @@ public class DataBase {
     private float[][] datas;
     private int peoplemin=5000;
     private int peoplemax=5000;
+    private DataBase db;
+    private ShowDatas SD;
     DataBase(){
         try{
             Scanner readFile = new Scanner(new File("./database/data.txt"));
@@ -92,5 +94,14 @@ public class DataBase {
                 }
             }
         }
+        this.db.setDBclass(db);
+    }
+
+    void setDBclass(DataBase db){
+        this.db = db;
+    }
+
+    void setShowDataclass(ShowDatas sd){
+        this.SD = sd;
     }
 }
