@@ -18,6 +18,7 @@ class PageStart extends JPanel{
         InputPeople inputPeople = new InputPeople(db);
         ShowDatas showDatas = new ShowDatas(app,showStatusArea);
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
+        //refresh page by setShowDataclass and data by setDBclass
         db.setShowDataclass(showDatas);
         showDatas.setDBclass(db);
         add(navbar);
@@ -29,18 +30,21 @@ class PageStart extends JPanel{
 
 class ShowDatas extends JPanel{
     private boolean checkstateClickRain = false;
-    public int chkstate = 0;
     private ShowStatusArea showStatusArea;
     private DataBase db;
     ShowDatas(App app){}
-    void setClickRainStatus(boolean chk){
-        this.checkstateClickRain = chk;
-    }
+    //coustucter
     ShowDatas(App app, ShowStatusArea showStatusArea){
         this.showStatusArea = showStatusArea;
     }
+    //
+    void setClickRainStatus(boolean chk){
+        this.checkstateClickRain = chk;
+    }
+    // set new DataBase 
     void setDBclass(DataBase db){
         this.db = db;
+        System.out.println(db);
     }
     void setDatas(){
         float[][] datas = this.db.getDatas();
@@ -121,10 +125,8 @@ class ShowStatusArea extends JPanel{
         label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
         panel_text_feeling.add(label_text_feeling);
         add(panel_text_feeling);
-        
-       
-        
     }
+
     void set_status(float persen)
     {
         JPanel pic_of_feeling = new JPanel();
@@ -140,10 +142,7 @@ class ShowStatusArea extends JPanel{
         JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
         Border O = BorderFactory.createLineBorder(Color.BLACK,2);
         Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
-       
-        
-        
-        
+           
         // importข้อความ
         JPanel panel_text_feeling = new JPanel();
         Font font_text= new Font("Tahoma",Font.BOLD,20);
@@ -160,6 +159,7 @@ class ShowStatusArea extends JPanel{
         panel_text_feeling.setBackground(getBackground());
         
         removeAll();
+        //chk health rate of persen
         if (persen >= 30 ) {
            
             pic_of_feeling.add(label_sick);
@@ -183,7 +183,7 @@ class ShowStatusArea extends JPanel{
         
     }
 }
-
+    //Panel set People in block
 class InputPeople extends JPanel{
     InputPeople(DataBase db){
         setBounds(1000, 570, 250, 100);
@@ -260,6 +260,7 @@ class About_Methods {
             panelDatas.add(rowDatas);
         }
     }
+    //set Color for health rate persen 
     Color getColor(float persen){
         if(persen>30){
             return new Color(178,0,0);
@@ -275,6 +276,7 @@ class About_Methods {
             return new Color(0,178,28);
         }
     }
+    //set parent in block
     float CaladerPerSen(float data){
         float persen = 0;
         if (data<0) {
@@ -291,6 +293,7 @@ class About_Methods {
         }  
         return persen;
     }
+    //show number of PM2.5
     void add_score(float[][] datas, int x, int y){
         int rows = datas.length;
         int cols = datas[0].length;

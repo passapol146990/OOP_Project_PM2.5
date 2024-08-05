@@ -11,7 +11,6 @@ public class DataBase {
     private float[][] datas;
     private int peoplemin=5000;
     private int peoplemax=5000;
-    private DataBase db;
     private ShowDatas SD;
     DataBase(){
         try{
@@ -96,6 +95,7 @@ public class DataBase {
         }
         this.SD.setDatas();
     }
+
     void setShowDataclass(ShowDatas sd){
         this.SD = sd;
     }
