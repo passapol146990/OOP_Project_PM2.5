@@ -94,13 +94,8 @@ public class DataBase {
                 }
             }
         }
-        this.db.setDBclass(db);
+        this.SD.setDatas();
     }
-
-    void setDBclass(DataBase db){
-        this.db = db;
-    }
-
     void setShowDataclass(ShowDatas sd){
         this.SD = sd;
     }

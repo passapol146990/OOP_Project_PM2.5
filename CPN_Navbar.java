@@ -42,7 +42,7 @@ class CPN_Navbar extends JPanel{
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
                     db.readFile(selectedFile.getAbsolutePath());
-                    showDatas.setDatas(db);
+                    showDatas.setDatas();
                 }
             }
         });
@@ -69,7 +69,7 @@ class CPN_Navbar extends JPanel{
         RandomkRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
         RandomkRain.addActionListener(e->{
             db.randomRain();
-            showDatas.setDatas(db);
+            showDatas.setDatas();
         });
         
         clickRain.addActionListener(e->{

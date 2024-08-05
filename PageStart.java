@@ -18,8 +18,8 @@ class PageStart extends JPanel{
         InputPeople inputPeople = new InputPeople(db);
         ShowDatas showDatas = new ShowDatas(app,showStatusArea);
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
-        showDatas.setShowDataclass(showDatas);
-        db.setDBclass(db);
+        db.setShowDataclass(showDatas);
+        showDatas.setDBclass(db);
         add(navbar);
         add(showDatas);
         add(showStatusArea);
@@ -38,6 +38,9 @@ class ShowDatas extends JPanel{
     }
     ShowDatas(App app, ShowStatusArea showStatusArea){
         this.showStatusArea = showStatusArea;
+    }
+    void setDBclass(DataBase db){
+        this.db = db;
     }
     void setDatas(){
         float[][] datas = this.db.getDatas();
@@ -345,33 +348,4 @@ class About_Methods {
             }
         }
     }
-    // void rainRoyal(ArrayList<ArrayList<Float>>datas,int x,int y){
-    //     if (y-1>=0) {
-    //             datas.get(x).set(y - 1, (float)datas.get(x).get(y - 1) - 1);
-    //         }
-    //         datas.get(x).set(y, (float)datas.get(x).get(y) - 1);
-    //         if (y+1<=19) {
-    //             datas.get(x).set(y + 1, (float)datas.get(x).get(y + 1) - 1);
-    //         }
-    //         // 
-    //         if (x-1>=0) {
-    //             if (y-1>=0) {
-    //                 datas.get(x - 1).set(y - 1, (float)datas.get(x-1).get(y - 1) - 1);
-    //             }
-    //             datas.get(x-1).set(y, (float)datas.get(x-1).get(y) - 1);
-    //             if (y+1<=19) {
-    //                 datas.get(x-1).set(y + 1, (float)datas.get(x-1).get(y + 1) - 1);
-    //             }
-    //         }
-    //         // 
-    //         if(x+1<=19) {
-    //             if (y-1>=0) {
-    //                 datas.get(x+1).set(y - 1, (float)datas.get(x+1).get(y - 1) - 1);
-    //             }
-    //             datas.get(x+1).set(y, (float)datas.get(x+1).get(y) - 1);
-    //             if (y+1<=19) {
-    //                 datas.get(x+1).set(y + 1, (float)datas.get(x+1).get(y + 1) - 1);
-    //             }
-    //         }
-    // }
 }
