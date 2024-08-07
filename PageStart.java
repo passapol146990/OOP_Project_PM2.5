@@ -116,6 +116,8 @@ class ShowStatusArea extends JPanel{
         JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(200,200,icon_sick.getImage().SCALE_SMOOTH)));
         ImageIcon icon_normal = new ImageIcon("./image/normal.png");
         JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
+        ImageIcon icon_nothing = new ImageIcon("./image/nothing.png");
+        JLabel label_nothing = new JLabel(new ImageIcon(icon_nothing.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
         Border O = BorderFactory.createLineBorder(Color.BLACK,2);
         Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
         
@@ -154,7 +156,7 @@ class ShowStatusArea extends JPanel{
             pic_of_feeling.add(label_happy);
         }
         else{
-            
+            pic_of_feeling.add(label_nothing);
             label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+0 + "<br>ประชากกรทั้งหมด"+0+" คน<br>ประชากรที่สุขภาพดี "+0+" คน<br>ประชากรที่ป่วย "+0+" คน<br>ร้อยละคนป่วย "+0+"%</div></html>");
         }
         panel_text_feeling.add(label_text_feeling);
