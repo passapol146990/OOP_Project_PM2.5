@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.util.Random;
 
 public class DataBase {
     private float[][] datas;
@@ -39,7 +39,7 @@ public class DataBase {
         }
     }
     int getRandomPeople(){
-        return (int)((Math.random()*this.peoplemax) + this.peoplemin);
+        return (int)new Random().nextInt(this.peoplemin, this.peoplemax);
     }
     int getMinPeople(){
         return this.peoplemin;
