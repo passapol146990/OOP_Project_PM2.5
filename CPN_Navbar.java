@@ -2,8 +2,6 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -23,7 +21,7 @@ class CPN_Navbar extends JPanel{
         btnBack.setBounds(5,5,100,30);
         btnBack.addActionListener(e->{
             app.showPanel("menu");
-            db.setDefaultsDatas();
+            // db.setDefaultsDatas();
         });
 
         CPN_ButtonPink openFile = new CPN_ButtonPink("open file",new Color(254,169,169));
