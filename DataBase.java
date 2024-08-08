@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
+
 import java.util.Random;
 
 public class DataBase {
@@ -86,6 +89,11 @@ public class DataBase {
                 }
             }
         }
+        else
+        {
+            //แสดงข้อความเตือน โดยให้ปรากฏที่กลางจอ และมีตัวเลือกการแสดง pop up เป็นแบบ Error_Message
+            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     void rainClick(int row,int col){
         if(this.datas.length > 1){
@@ -97,6 +105,10 @@ public class DataBase {
                 }
             }
         }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
         }
         this.showDatas.setDatas();
     }
