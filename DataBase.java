@@ -115,4 +115,8 @@ public class DataBase {
     void setShowDatasClass(ShowDatas showDatas){
         this.showDatas = showDatas;
     }
+    void setDefaultsDatas(){
+        float[][] datas = {{}};
+        this.datas = datas;
+    }
 }

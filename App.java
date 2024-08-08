@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 public class App extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private ShowDatas showDatas;
     // คอนซักเตอร์ รับ titlez แสดงที่หัวโปรแกรม
     App(String title){
         cardLayout = new CardLayout();
@@ -26,5 +27,11 @@ public class App extends JFrame{
     // เมธอดแสดงหน้าต่าง รับพารามิเตอร์ path(String) เพื่อเปลี่ยนหน้าต่างที่ต้องการ ตามที่เพิ่มเข้าไปในเมธอด addPenel
     void showPanel(String path){
         this.cardLayout.show(this.mainPanel,path);
+    }
+    void setShowDatasClass(ShowDatas showDatas){
+        this.showDatas = showDatas;
+    }
+    ShowDatas geShowDatas(){
+        return this.showDatas;
     }
 }

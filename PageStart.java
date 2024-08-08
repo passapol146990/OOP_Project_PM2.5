@@ -18,6 +18,7 @@ class PageStart extends JPanel{
         db.setShowDatasClass(showDatas);
         showDatas.setDataBaseClass(db);
         showDatas.setDatas();
+        app.setShowDatasClass(showDatas);
         add(navbar);
         add(showDatas);
         add(showStatusArea);
