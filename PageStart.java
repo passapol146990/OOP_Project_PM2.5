@@ -17,7 +17,7 @@ class PageStart extends JPanel{
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
         db.setShowDatasClass(showDatas);
         showDatas.setDataBaseClass(db);
-        app.setShowDatasClass(showDatas);
+        app.setShowDatasClass(showDatas);//ให้ทำงานเมื่อมีการกดปุ่มที่ Start
         add(navbar);
         add(showDatas);
         add(showStatusArea);
