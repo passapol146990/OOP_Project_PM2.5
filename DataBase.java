@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import java.util.Random;
 
 public class DataBase {
-    private float[][] datas;
+    private float[][] datas = {{}};
     private int peoplemin=5000;
     private int peoplemax=5000;
     private ShowDatas showDatas;
@@ -79,13 +79,16 @@ public class DataBase {
         }
     }
     void randomRain(){
-        for(int i=0; i<this.datas.length; i++) {
-            for(int j=0; j<this.datas[i].length;j++){
-                this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
+        if(this.datas.length > 1){
+            for(int i=0; i<this.datas.length; i++) {
+                for(int j=0; j<this.datas[i].length;j++){
+                    this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
+                }
             }
         }
     }
     void rainClick(int row,int col){
+        if(this.datas.length > 1){
         this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
         for (int i = row - 1; i <= row + 1; i++) {
             for (int j = col - 1; j <= col + 1; j++) {
@@ -93,6 +96,7 @@ public class DataBase {
                     this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
                 }
             }
+        }
         }
         this.showDatas.setDatas();
     }
