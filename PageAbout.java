@@ -1,24 +1,19 @@
 // หน้าสำหรับแสดงรายชื่อผู้พัฒนา
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.LayoutManager;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 public class PageAbout extends JPanel{
     PageAbout(App app){
-        CPN_Navbar navbar = new CPN_Navbar(app,"Organizer");
+        CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
         BodyAbout bodyAbout = new BodyAbout();
 
         setLayout(null);

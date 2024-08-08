@@ -1,12 +1,8 @@
 // หน้าสำหรับการทำงาน starting ระบบต่างๆ ฝนหลวง เปิดไฟล์
-import javax.sql.DataSource;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 import javax.swing.border.Border;
