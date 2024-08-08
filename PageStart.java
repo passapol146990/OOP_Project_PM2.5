@@ -17,7 +17,6 @@ class PageStart extends JPanel{
         CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
         db.setShowDatasClass(showDatas);
         showDatas.setDataBaseClass(db);
-        showDatas.setDatas();
         app.setShowDatasClass(showDatas);
         add(navbar);
         add(showDatas);
