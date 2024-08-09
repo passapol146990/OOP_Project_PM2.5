@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class PageAbout extends JPanel{
+    private boolean chkPageAboutFristRun = true;
     PageAbout(App app){
         setLayout(null);
     }
@@ -19,10 +20,16 @@ public class PageAbout extends JPanel{
     void setPageabout(App app){
         CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
         BodyAbout bodyAbout = new BodyAbout();
-        add(navbar);
-        add(bodyAbout);
+        if(chkPageAboutFristRun){
+            add(navbar);
+            add(bodyAbout);
+            setPageAboutFirstRunstatus(false);
+        }
+        else{}
     }
-
+    void setPageAboutFirstRunstatus(boolean chk){
+        this.chkPageAboutFristRun = chk;
+    }
 }
 
 class BodyAbout extends JPanel{
