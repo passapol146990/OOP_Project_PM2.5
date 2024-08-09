@@ -89,28 +89,19 @@ public class DataBase {
                 }
             }
         }
-        else
-        {
-            //แสดงข้อความเตือน โดยให้ปรากฏที่กลางจอ และมีตัวเลือกการแสดง pop up เป็นแบบ Error_Message
-            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }
     void rainClick(int row,int col){
         if(this.datas.length > 1){
-        this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
-        for (int i = row - 1; i <= row + 1; i++) {
-            for (int j = col - 1; j <= col + 1; j++) {
-                if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
-                    this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
+            this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
+            for (int i = row - 1; i <= row + 1; i++) {
+                for (int j = col - 1; j <= col + 1; j++) {
+                    if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
+                        this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
+                    }
                 }
             }
+            this.showDatas.setDatas();
         }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        this.showDatas.setDatas();
     }
     void setShowDatasClass(ShowDatas showDatas){
         this.showDatas = showDatas;

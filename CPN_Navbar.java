@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -57,7 +58,11 @@ class CPN_Navbar extends JPanel{
         clickRain.setBounds(950,5,120,30);
         clickRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
         clickRain.addActionListener(e->{
-            showDatas.setClickRainStatus(true);
+            if(db.getDatas().length>1){
+                showDatas.setClickRainStatus(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         ImageIcon iconRandomRaid = new ImageIcon("./image/randomrain.png");
@@ -65,8 +70,12 @@ class CPN_Navbar extends JPanel{
         RandomkRain.setBounds(1100,5,120,30);
         RandomkRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
         RandomkRain.addActionListener(e->{
-            db.randomRain();
-            showDatas.setDatas();
+            if(db.getDatas().length>1){
+                db.randomRain();
+                showDatas.setDatas();
+            }else{
+                JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
         
         clickRain.addActionListener(e->{
