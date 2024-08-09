@@ -1,14 +1,10 @@
 // หน้าเมนู
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,7 +44,12 @@ public class PageMenu extends JPanel {
         btnExit.addActionListener(e -> System.exit(0));
         add(btnExit,position);
 
-        btnStart.addActionListener(e->{app.showPanel("start");});
-        btnAbout.addActionListener(e->{app.showPanel("about");});
+        btnStart.addActionListener(e->{
+            app.showPanel("start");
+            app.geShowDatas().setDatas();
+        });
+        btnAbout.addActionListener(e->{
+            app.showPanel("about");
+        });
     }
 }

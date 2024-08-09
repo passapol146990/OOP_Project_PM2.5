@@ -6,11 +6,16 @@ import java.io.FileWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
+
+import java.util.Random;
 
 public class DataBase {
-    private float[][] datas;
+    private float[][] datas = {{}};
     private int peoplemin=5000;
     private int peoplemax=5000;
+    private ShowDatas showDatas;
+
     DataBase(){
         try{
             Scanner readFile = new Scanner(new File("./database/data.txt"));
@@ -37,7 +42,7 @@ public class DataBase {
         }
     }
     int getRandomPeople(){
-        return (int)((Math.random()*this.peoplemax) + this.peoplemin);
+        return (int)new Random().nextInt(this.peoplemin, this.peoplemax);
     }
     int getMinPeople(){
         return this.peoplemin;
@@ -77,20 +82,41 @@ public class DataBase {
         }
     }
     void randomRain(){
-        for(int i=0; i<this.datas.length; i++) {
-            for(int j=0; j<this.datas[i].length;j++){
-                this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
+        if(this.datas.length > 1){
+            for(int i=0; i<this.datas.length; i++) {
+                for(int j=0; j<this.datas[i].length;j++){
+                    this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
+                }
             }
         }
+        else
+        {
+            //แสดงข้อความเตือน โดยให้ปรากฏที่กลางจอ และมีตัวเลือกการแสดง pop up เป็นแบบ Error_Message
+            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    // void rainClick(int row,int col){
-    //     this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
-    //     for (int i = row - 1; i <= row + 1; i++) {
-    //         for (int j = col - 1; j <= col + 1; j++) {
-    //             if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
-    //                 data_tr.setPm25(i,j,(int) (this.pm25[i][j] * 0.7));
-    //             }
-    //         }
-    //     }
-    // }
+    void rainClick(int row,int col){
+        if(this.datas.length > 1){
+        this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
+                    this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
+                }
+            }
+        }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        this.showDatas.setDatas();
+    }
+    void setShowDatasClass(ShowDatas showDatas){
+        this.showDatas = showDatas;
+    }
+    void setDefaultsDatas(){
+        float[][] datas = {{}};
+        this.datas = datas;
+    }
 }
