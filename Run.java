@@ -7,6 +7,7 @@ public class Run {
         PageStart startPage = new PageStart(app);
         PageAbout aboutPage = new PageAbout(app);
         app.setPageAboutClass(aboutPage);
+        app.setBodyStartClass(startPage);
         app.addPanel(menu,"menu");
         app.addPanel(startPage,"start");
         app.addPanel(aboutPage,"about");

@@ -10,6 +10,9 @@ import javax.swing.border.Border;
 class PageStart extends JPanel{
     PageStart(App app){
         setLayout(null);
+    }
+
+    void setBodyStart(App app){
         DataBase db = new DataBase();
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
         InputPeople inputPeople = new InputPeople(db);
@@ -18,15 +21,12 @@ class PageStart extends JPanel{
         db.setShowDatasClass(showDatas);
         showDatas.setDataBaseClass(db);
         app.setShowDatasClass(showDatas);//ให้ทำงานเมื่อมีการกดปุ่มที่ Start
+        app.geShowDatas().setDatas();
         add(navbar);
         add(showDatas);
         add(showStatusArea);
         add(inputPeople);
     }
-    // void setBodyStart()
-    // {
-        
-    // }
 }
 
 class ShowDatas extends JPanel{
