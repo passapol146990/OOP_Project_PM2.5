@@ -46,10 +46,11 @@ public class PageMenu extends JPanel {
 
         btnStart.addActionListener(e->{
             app.showPanel("start");
-            app.geShowDatas().setDatas();
+            app.getPageStart().setBodyStart(app);
         });
         btnAbout.addActionListener(e->{
             app.showPanel("about");
+            app.getPageAbout().setPageabout(app);
         });
     }
 }

@@ -13,18 +13,22 @@ import javax.swing.border.Border;
 
 public class PageAbout extends JPanel{
     PageAbout(App app){
+        setLayout(null);
+    }
+    
+    void setPageabout(App app){
         CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
         BodyAbout bodyAbout = new BodyAbout();
-
-        setLayout(null);
         add(navbar);
         add(bodyAbout);
     }
+
 }
 
 class BodyAbout extends JPanel{
+    //Constuger
     BodyAbout(){
-        // setLayout(null);
+        //setLayout(null);
         setLayout(new GridBagLayout());
         setBounds(0, 0, 1280, 720);
         

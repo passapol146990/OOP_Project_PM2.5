@@ -8,6 +8,8 @@ public class App extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private ShowDatas showDatas;
+    private PageStart pagestart;
+    private PageAbout pageabout;
     // คอนซักเตอร์ รับ titlez แสดงที่หัวโปรแกรม
     App(String title){
         cardLayout = new CardLayout();
@@ -31,7 +33,19 @@ public class App extends JFrame{
     void setShowDatasClass(ShowDatas showDatas){
         this.showDatas = showDatas;
     }
+    void setPageAboutClass(PageAbout pageabout){
+        this.pageabout = pageabout;
+    }
+    void setBodyStartClass(PageStart pagestart){
+        this.pagestart = pagestart;
+    }
     ShowDatas geShowDatas(){
         return this.showDatas;
+    }
+    PageAbout getPageAbout(){
+        return this.pageabout;
+    }
+    PageStart getPageStart(){
+        return this.pagestart;
     }
 }
