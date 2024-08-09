@@ -23,6 +23,10 @@ class PageStart extends JPanel{
         add(showStatusArea);
         add(inputPeople);
     }
+    // void setBodyStart()
+    // {
+        
+    // }
 }
 
 class ShowDatas extends JPanel{

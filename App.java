@@ -8,7 +8,7 @@ public class App extends JFrame{
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private ShowDatas showDatas;
-    private BodyAbout bodyabout;
+    private PageAbout pageabout;
     // คอนซักเตอร์ รับ titlez แสดงที่หัวโปรแกรม
     App(String title){
         cardLayout = new CardLayout();
@@ -32,11 +32,15 @@ public class App extends JFrame{
     void setShowDatasClass(ShowDatas showDatas){
         this.showDatas = showDatas;
     }
-    void setBodyAboutClass(BodyAbout bodyabout)
+    void setPageAboutClass(PageAbout pageabout)
     {
-
+        this.pageabout = pageabout;
     }
     ShowDatas geShowDatas(){
         return this.showDatas;
+    }
+    PageAbout getPageAbout()
+    {
+        return this.pageabout;
     }
 }

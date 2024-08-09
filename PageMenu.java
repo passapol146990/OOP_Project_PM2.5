@@ -50,6 +50,7 @@ public class PageMenu extends JPanel {
         });
         btnAbout.addActionListener(e->{
             app.showPanel("about");
+            app.getPageAbout().setPageabout(app);
         });
     }
 }
