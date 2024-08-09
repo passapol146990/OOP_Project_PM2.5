@@ -4,7 +4,6 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 
-
 import javax.swing.border.Border;
 
 class PageStart extends JPanel{
@@ -92,13 +91,43 @@ class ShowStatusArea extends JPanel{
         JPanel pic_of_feeling = new JPanel();
         pic_of_feeling.setLayout(new FlowLayout());
         pic_of_feeling.setBounds(1000,50 , 250, 250);
+        //อธิบายค่าสี
+        JPanel panel_guide = new JPanel(new FlowLayout(FlowLayout.TRAILING,5,5));
+        panel_guide.setPreferredSize(new Dimension(230,180));
+        panel_guide.setBackground(new Color(192, 192, 192));
+        // สี
+        JPanel color_red = new JPanel();
+        color_red.setPreferredSize(new Dimension(30,30));
+        color_red.setBackground(new Color(178,0,0));
+        JPanel color_yellow = new JPanel();
+        color_yellow.setPreferredSize(new Dimension(30,30));
+        color_yellow.setBackground(new Color(178,0,0));
+        JPanel color_orange = new JPanel();
+        color_orange.setPreferredSize(new Dimension(30,30));
+        color_orange.setBackground(new Color(178,0,0));
+        JPanel color_green = new JPanel();
+        color_green.setPreferredSize(new Dimension(30,30));
+        color_green.setBackground(new Color(0,178,28));
+        // ข้อความ
+        JLabel label_text_red = new JLabel();
+        label_text_red.setFont(new Font("Tahoma",Font.BOLD,15));
+        label_text_red.setText("มากกว่า 30%");
+        JLabel label_text_green = new JLabel();
+        label_text_green.setFont(new Font("Tahoma",Font.BOLD,15));
+        label_text_green.setText("ตั้งแต่ 0- 9%");
+        
+        // addเข้าpanel guide
+        panel_guide.add(color_red);
+        panel_guide.add(label_text_red);
+        panel_guide.add(color_green);
+
         // กล่องข้อความ
         JPanel panel_text_feeling = new JPanel();
-        Font font_text= new Font("Tahoma",Font.BOLD,18);
-        panel_text_feeling.setBounds(1000,301 , 250, 350);
+        Font font_text= new Font("Tahoma",Font.BOLD,15);
+        panel_text_feeling.setBounds(1000,301 , 150, 250);
         panel_text_feeling.setLayout(new FlowLayout());
         Border O = BorderFactory.createLineBorder(Color.BLACK,2);
-        Border I = BorderFactory.createEmptyBorder(-2,0,0,0);
+        Border I = BorderFactory.createEmptyBorder(-2,0,0,-5);
         panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel_text_feeling.setBackground(getBackground());
         //ข้อความ
@@ -115,29 +144,30 @@ class ShowStatusArea extends JPanel{
         removeAll();
         if (persen >= 30 ){
             ImageIcon icon_sick = new ImageIcon("./image/sick.png");
-            JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(200,200,icon_sick.getImage().SCALE_SMOOTH)));
+            JLabel label_sick = new JLabel(new ImageIcon(icon_sick.getImage().getScaledInstance(150,150,icon_sick.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_sick);
         }else if (persen >= 20){
             ImageIcon icon_sad = new ImageIcon("./image/sad.png");
-            JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(200,200,icon_sad.getImage().SCALE_SMOOTH)));
+            JLabel label_sad = new JLabel(new ImageIcon(icon_sad.getImage().getScaledInstance(150,150,icon_sad.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_sad);
         }else if (persen >= 10){
             ImageIcon icon_normal = new ImageIcon("./image/normal.png");
-            JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(200,200,icon_normal.getImage().SCALE_SMOOTH)));
+            JLabel label_normal = new JLabel(new ImageIcon(icon_normal.getImage().getScaledInstance(150,150,icon_normal.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_normal);
         }else if (persen >= 0){
             ImageIcon icon_happy = new ImageIcon("./image/happy.png");
-            JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(200,200,icon_happy.getImage().SCALE_SMOOTH)));
+            JLabel label_happy = new JLabel(new ImageIcon(icon_happy.getImage().getScaledInstance(150,150,icon_happy.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_happy);
         }else{
             ImageIcon icon_nothing = new ImageIcon("./image/nothing.png");
-            JLabel label_nothing= new JLabel(new ImageIcon(icon_nothing.getImage().getScaledInstance(200,200,icon_nothing.getImage().SCALE_SMOOTH)));
+            JLabel label_nothing= new JLabel(new ImageIcon(icon_nothing.getImage().getScaledInstance(150,150,icon_nothing.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_nothing);
             label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+0 + "<br>ประชากกรทั้งหมด"+0+" คน<br>ประชากรที่สุขภาพดี "+0+" คน<br>ประชากรที่ป่วย "+0+" คน<br>ร้อยละคนป่วย "+0+"%</div></html>");
         }
         panel_text_feeling.add(label_text_feeling);
         add(pic_of_feeling);
         add(panel_text_feeling);
+        add(panel_guide);
         revalidate();
         repaint();
         
