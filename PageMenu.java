@@ -41,9 +41,11 @@ public class PageMenu extends JPanel {
         btnExit.setFont(new Font("Tahoma",Font.BOLD,25));
         position.gridx = 0;
         position.gridy = 3;
-        btnExit.addActionListener(e -> System.exit(0));
         add(btnExit,position);
-
+        
+        btnExit.addActionListener(e -> {
+            System.exit(0);
+        });
         btnStart.addActionListener(e->{
             app.showPanel("start");
             app.getPageStart().setBodyStart(app);

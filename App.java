@@ -16,7 +16,7 @@ public class App extends JFrame{
         this.mainPanel = new JPanel(cardLayout);
         setTitle(title);
         setBounds(50,50,1280,720);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage("./image/Icon.jpg"));
         add(this.mainPanel);
         setResizable(false);
