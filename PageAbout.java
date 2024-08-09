@@ -27,8 +27,7 @@ public class PageAbout extends JPanel{
         }
         else{}
     }
-    void setPageAboutFirstRunstatus(boolean chk)
-    {
+    void setPageAboutFirstRunstatus(boolean chk){
         this.chkPageAboutFristRun = chk;
     }
 }
