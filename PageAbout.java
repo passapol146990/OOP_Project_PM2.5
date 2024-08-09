@@ -15,7 +15,7 @@ public class PageAbout extends JPanel{
     PageAbout(App app){
         CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
         BodyAbout bodyAbout = new BodyAbout();
-
+        app.setBodyAboutClass(bodyAbout);
         setLayout(null);
         add(navbar);
         add(bodyAbout);
