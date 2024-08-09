@@ -236,10 +236,9 @@ class About_Methods {
     }
     float CaladerPerSen(float data){
         float persen = 0;
-        if (data<0) {
+        if (data<0 || data>250) {
             persen = -1;
-        }
-        else if(data<=50){
+        }else if(data<=50){
             persen = (float)((float)(data-0)/(50-0))*(9-0)+0;
         }else if(data<=100){    
             persen = (float)((float)(data-51)/(100-51))*(19-10)+10;
