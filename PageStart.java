@@ -92,46 +92,89 @@ class ShowStatusArea extends JPanel{
     }
     void set_status(float persen,int people,DataBase db,int row,int col){
         float[][] datas = db.getDatas();
+        Border O = BorderFactory.createLineBorder(Color.BLACK,2);
+        Border I = BorderFactory.createEmptyBorder(-2,0,0,-5);
         JPanel pic_of_feeling = new JPanel();
         pic_of_feeling.setLayout(new FlowLayout());
         pic_of_feeling.setBounds(1000,50 , 250, 250);
-        //อธิบายค่าสี
+        //อธิบาย ค่าสี
         JPanel panel_guide = new JPanel(new FlowLayout(FlowLayout.TRAILING,5,5));
         panel_guide.setPreferredSize(new Dimension(230,180));
-        panel_guide.setBackground(new Color(192, 192, 192));
+        panel_guide.setBackground(new Color(255,192,203));
+        //panel guide เล็กแต่ละสี
+        JPanel panel_guide_red = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel_guide_red.setPreferredSize(new Dimension(220,29));
+        panel_guide_red.setBackground(new Color(255,255,255));
+        JPanel panel_guide_orange = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel_guide_orange.setPreferredSize(new Dimension(220,29));
+        panel_guide_orange.setBackground(new Color(255,255,255));
+        JPanel panel_guide_yellow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel_guide_yellow.setPreferredSize(new Dimension(220,29));
+        panel_guide_yellow.setBackground(new Color(255,255,255));
+        JPanel panel_guide_green = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel_guide_green.setPreferredSize(new Dimension(220,29));
+        panel_guide_green.setBackground(new Color(255,255,255));
+        JPanel panel_guide_grey = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel_guide_grey.setPreferredSize(new Dimension(220,29));
+        panel_guide_grey.setBackground(new Color(255,255,255));
         // สี
         JPanel color_red = new JPanel();
-        color_red.setPreferredSize(new Dimension(30,30));
+        color_red.setPreferredSize(new Dimension(20,30));
         color_red.setBackground(new Color(178,0,0));
-        JPanel color_yellow = new JPanel();
-        color_yellow.setPreferredSize(new Dimension(30,30));
-        color_yellow.setBackground(new Color(178,0,0));
         JPanel color_orange = new JPanel();
-        color_orange.setPreferredSize(new Dimension(30,30));
-        color_orange.setBackground(new Color(178,0,0));
+        color_orange.setPreferredSize(new Dimension(20,30));
+        color_orange.setBackground(new Color(255,61,0));
+        JPanel color_yellow = new JPanel();
+        color_yellow.setPreferredSize(new Dimension(20,30));
+        color_yellow.setBackground(new Color(208,212,5));
         JPanel color_green = new JPanel();
-        color_green.setPreferredSize(new Dimension(30,30));
+        color_green.setPreferredSize(new Dimension(20,30));
         color_green.setBackground(new Color(0,178,28));
-        // ข้อความ
+        JPanel color_grey = new JPanel();
+        color_grey.setPreferredSize(new Dimension(20,30));
+        color_grey.setBackground(new Color(192, 192, 192));
+        // ข้อความ guide
+        Font font_guide= new Font("Tahoma",Font.BOLD,15);
         JLabel label_text_red = new JLabel();
-        label_text_red.setFont(new Font("Tahoma",Font.BOLD,15));
+        label_text_red.setFont(font_guide);
         label_text_red.setText("มากกว่า 30%");
+        JLabel label_text_orange = new JLabel();
+        label_text_orange.setFont(font_guide);
+        label_text_orange.setText("ตั้งแต่ 20-29%");
+        JLabel label_text_yellow = new JLabel();
+        label_text_yellow.setFont(font_guide);
+        label_text_yellow.setText("ตั้งแต่ 10-19%");
         JLabel label_text_green = new JLabel();
-        label_text_green.setFont(new Font("Tahoma",Font.BOLD,15));
-        label_text_green.setText("ตั้งแต่ 0- 9%");
+        label_text_green.setFont(font_guide);
+        label_text_green.setText("ตั้งแต่ 0-9%");
+        JLabel label_text_grey = new JLabel();
+        label_text_grey.setFont(font_guide);
+        label_text_grey.setText("เป็นฝุ่นที่ติดลบ");
         
+        // addเข้าpanel แต่ละสี
+        panel_guide_red.add(color_red);
+        panel_guide_red.add(label_text_red);
+        panel_guide_orange.add(color_orange);
+        panel_guide_orange.add(label_text_orange);
+        panel_guide_yellow.add(color_yellow);
+        panel_guide_yellow.add(label_text_yellow);
+        panel_guide_green.add(color_green);
+        panel_guide_green.add(label_text_green);
+        panel_guide_grey.add(color_grey);
+        panel_guide_grey.add(label_text_grey);
         // addเข้าpanel guide
-        panel_guide.add(color_red);
-        panel_guide.add(label_text_red);
-        panel_guide.add(color_green);
-
-        // กล่องข้อความ
-        JPanel panel_text_feeling = new JPanel();
+        panel_guide.setBorder(BorderFactory.createCompoundBorder(O, I));
+        panel_guide.add(panel_guide_red);
+        panel_guide.add(panel_guide_orange);
+        panel_guide.add(panel_guide_yellow);
+        panel_guide.add(panel_guide_green);
+        panel_guide.add(panel_guide_grey);
+        
+        
+        JPanel panel_text_feeling = new JPanel(new FlowLayout(FlowLayout.TRAILING,5,5));
         Font font_text= new Font("Tahoma",Font.BOLD,15);
-        panel_text_feeling.setBounds(1000,301 , 150, 250);
+        panel_text_feeling.setPreferredSize(new Dimension(250,120));
         panel_text_feeling.setLayout(new FlowLayout());
-        Border O = BorderFactory.createLineBorder(Color.BLACK,2);
-        Border I = BorderFactory.createEmptyBorder(-2,0,0,-5);
         panel_text_feeling.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel_text_feeling.setBackground(getBackground());
         //ข้อความ
@@ -236,9 +279,10 @@ class About_Methods {
     }
     float CaladerPerSen(float data){
         float persen = 0;
-        if (data<0 || data>250) {
+        if (data<0) {
             persen = -1;
-        }else if(data<=50){
+        }
+        else if(data<=50){
             persen = (float)((float)(data-0)/(50-0))*(9-0)+0;
         }else if(data<=100){    
             persen = (float)((float)(data-51)/(100-51))*(19-10)+10;
