@@ -12,6 +12,7 @@ class PageStart extends JPanel{
     }
 
     void setBodyStart(App app){
+        removeAll();
         DataBase db = new DataBase();
         ShowStatusArea showStatusArea = new ShowStatusArea(app);
         InputPeople inputPeople = new InputPeople(db);
