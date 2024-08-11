@@ -248,17 +248,6 @@ class InputPeople extends JPanel{
         save.addActionListener(e->{
             db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
         });
-        // save.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent event) {
-        //     }
-        // });
-        // inputMax.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         String text = inputMin.getText();
-        //         System.out.println(text);
-        //  60       inputMin.setText("");
-        //     }
-        // });
     }
 }
 

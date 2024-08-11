@@ -18,14 +18,13 @@ public class PageAbout extends JPanel{
     }
     
     void setPageabout(App app){
-        CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
-        BodyAbout bodyAbout = new BodyAbout();
         if(chkPageAboutFristRun){
+            CPN_Navbar navbar = new CPN_Navbar(app,"ผู้พัฒนาโปรแกรม");
+            BodyAbout bodyAbout = new BodyAbout();
             add(navbar);
             add(bodyAbout);
             setPageAboutFirstRunstatus(false);
         }
-        else{}
     }
     void setPageAboutFirstRunstatus(boolean chk){
         this.chkPageAboutFristRun = chk;

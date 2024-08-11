@@ -65,7 +65,6 @@ public class DataBase {
     void readFile(String path){
         try {
             Scanner readFile = new Scanner(new File(path));
-            this.datas = null;
             ArrayList<float[]> tempData = new ArrayList<>();
             while (readFile.hasNext()) {
                 String[] line = readFile.nextLine().split("\t");
@@ -78,7 +77,7 @@ public class DataBase {
             this.datas = tempData.toArray(new float[tempData.size()][]);
         } 
         catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null,"Error: file data error", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     void randomRain(){
