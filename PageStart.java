@@ -3,6 +3,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.awt.*;
+import java.lang.reflect.Type;
 
 import javax.swing.border.Border;
 
@@ -246,7 +247,14 @@ class InputPeople extends JPanel{
         save.setBounds(70,70,100,25);
         add(save);
         save.addActionListener(e->{
+            if(Integer.parseInt(inputMin.getText()) > Integer.parseInt(inputMax.getText()))
+            {
+                JOptionPane.showMessageDialog(null,"Error: People MIN-MAX ERROR", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
             db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
+            }
         });
     }
 }
