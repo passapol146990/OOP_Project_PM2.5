@@ -32,7 +32,7 @@ public class PageAbout extends JPanel{
 }
 
 class BodyAbout extends JPanel{
-    //Constuger
+    //constructor
     BodyAbout(){
         //setLayout(null);
         setLayout(new GridBagLayout());
@@ -52,7 +52,9 @@ class BodyAbout extends JPanel{
         panel1.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel2.setBorder(BorderFactory.createCompoundBorder(O, I));
         panel3.setBorder(BorderFactory.createCompoundBorder(O, I));
+
         // //importรูป พร้อมตั้งขนาด
+
         ImageIcon iconpic1 = new ImageIcon("./image/Phol.png");
         ImageIcon iconpic2 = new ImageIcon("./image/Poom.jpg");
         ImageIcon iconpic3 = new ImageIcon("./image/Nam.jpg");

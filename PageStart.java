@@ -4,7 +4,6 @@ import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.lang.reflect.Type;
-
 import javax.swing.border.Border;
 
 class PageStart extends JPanel{
@@ -243,15 +242,23 @@ class InputPeople extends JPanel{
         save.setBounds(70,70,100,25);
         add(save);
         save.addActionListener(e->{
+            if(inputMax.getText().matches("-?\\d+") == false || inputMin.getText().matches("-?\\d+") == false){
+                JOptionPane.showMessageDialog(null,"Error: not int","Eror",JOptionPane.ERROR_MESSAGE);
+            }
+            else{
             if(Integer.parseInt(inputMin.getText()) > Integer.parseInt(inputMax.getText()))
             {
                 JOptionPane.showMessageDialog(null,"Error: People MIN-MAX ERROR", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            else
+            else if(Integer.parseInt(inputMin.getText()) < 0)
             {
-            db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText()));
+                JOptionPane.showMessageDialog(null,"Error:Minimum of People = 0", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        });
+            else
+            {        
+                db.setMinMaxPeople(Integer.parseInt(inputMin.getText()), Integer.parseInt(inputMax.getText())); 
+            }
+        }});
     }
 }
 

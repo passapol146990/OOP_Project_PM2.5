@@ -43,7 +43,14 @@ public class DataBase {
         }
     }
     int getRandomPeople(){
+        if(this.peoplemin == this.peoplemax)
+        {
+            return this.peoplemin;
+        }
+        else
+        {
         return (int)new Random().nextInt(this.peoplemin, this.peoplemax);
+        }
     }
     int getMinPeople(){
         return this.peoplemin;
