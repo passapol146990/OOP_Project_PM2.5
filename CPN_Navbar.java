@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 class CPN_Navbar extends JPanel{
-    CPN_Navbar(App app,DataBase db,ShowDatas showDatas){
+    CPN_Navbar(App app){
         setBounds(-1, 0,1280,40);
         setBorder(new LineBorder(new Color(0,0,0)));
         setLayout(null);
@@ -22,7 +22,7 @@ class CPN_Navbar extends JPanel{
         btnBack.setBounds(5,5,100,30);
         btnBack.addActionListener(e->{
             app.showPanel("menu");
-            db.setDefaultsDatas();
+            app.getDataBase().setDefaultsDatas();
         });
 
         CPN_ButtonPink openFile = new CPN_ButtonPink("open file",new Color(254,169,169));
@@ -41,8 +41,8 @@ class CPN_Navbar extends JPanel{
 
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
-                db.readFile(selectedFile.getAbsolutePath());
-                showDatas.setDatas();
+                app.getDataBase().readFile(selectedFile.getAbsolutePath());
+                app.getShowDatas().setDatas();
             }
         });
 
@@ -58,8 +58,8 @@ class CPN_Navbar extends JPanel{
         clickRain.setBounds(950,5,120,30);
         clickRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
         clickRain.addActionListener(e->{
-            if(db.getDatas().length>1){
-                showDatas.setClickRainStatus(true);
+            if(app.getDataBase().getDatas().length>1){
+                app.getShowDatas().setClickRainStatus(true);
             }else{
                 JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -70,16 +70,16 @@ class CPN_Navbar extends JPanel{
         RandomkRain.setBounds(1100,5,120,30);
         RandomkRain.setCursor(new Cursor(JFrame.HAND_CURSOR));
         RandomkRain.addActionListener(e->{
-            if(db.getDatas().length>1){
-                db.randomRain();
-                showDatas.setDatas();
+            if(app.getDataBase().getDatas().length>1){
+                app.getDataBase().randomRain();
+                app.getShowDatas().setDatas();
             }else{
                 JOptionPane.showMessageDialog(null,"Error: No file to use", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         
         clickRain.addActionListener(e->{
-            showDatas.setClickRainStatus(true);
+            app.getShowDatas().setClickRainStatus(true);
         });
 
         add(openFile);

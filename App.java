@@ -3,7 +3,6 @@ import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 
 import java.awt.Toolkit;
 public class App extends JFrame{
@@ -12,6 +11,7 @@ public class App extends JFrame{
     private ShowDatas showDatas;
     private PageStart pagestart;
     private PageAbout pageabout;
+    private DataBase dataBase;
     // คอนซักเตอร์ รับ titlez แสดงที่หัวโปรแกรม
     App(String title){
         cardLayout = new CardLayout();
@@ -42,7 +42,10 @@ public class App extends JFrame{
     void setBodyStartClass(PageStart pagestart){
         this.pagestart = pagestart;
     }
-    ShowDatas geShowDatas(){
+    void setdataBaseClass(DataBase dataBase){
+        this.dataBase = dataBase;
+    }
+    ShowDatas getShowDatas(){
         return this.showDatas;
     }
     PageAbout getPageAbout(){
@@ -50,5 +53,8 @@ public class App extends JFrame{
     }
     PageStart getPageStart(){
         return this.pagestart;
+    }
+    DataBase getDataBase(){
+        return this.dataBase;
     }
 }

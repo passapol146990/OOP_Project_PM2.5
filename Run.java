@@ -6,8 +6,12 @@ public class Run {
         PageMenu menu = new PageMenu(app);
         PageStart startPage = new PageStart(app);
         PageAbout aboutPage = new PageAbout(app);
+        DataBase dataBase = new DataBase(app);
+
         app.setPageAboutClass(aboutPage);
         app.setBodyStartClass(startPage);
+        app.setdataBaseClass(dataBase);
+
         app.addPanel(menu,"menu");
         app.addPanel(startPage,"start");
         app.addPanel(aboutPage,"about");
