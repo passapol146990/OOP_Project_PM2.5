@@ -54,11 +54,11 @@ class BodyAbout extends JPanel{
         panel3.setBorder(BorderFactory.createCompoundBorder(O, I));
         // //importรูป พร้อมตั้งขนาด
         ImageIcon iconpic1 = new ImageIcon("./image/Phol.png");
-        JLabel label_phol = new JLabel(new ImageIcon(iconpic1.getImage().getScaledInstance(300,250,iconpic1.getImage().SCALE_SMOOTH)));
         ImageIcon iconpic2 = new ImageIcon("./image/Poom.jpg");
-        JLabel label_poom = new JLabel(new ImageIcon(iconpic2.getImage().getScaledInstance(300,250,iconpic2.getImage().SCALE_SMOOTH)));
         ImageIcon iconpic3 = new ImageIcon("./image/Nam.jpg");
-        JLabel label_nam = new JLabel(new ImageIcon(iconpic3.getImage().getScaledInstance(300,250,iconpic3.getImage().SCALE_SMOOTH)));
+        JLabel label_phol = new JLabel(iconpic1);
+        JLabel label_poom = new JLabel(iconpic2);
+        JLabel label_nam = new JLabel(iconpic3);
         // //แบ่ง panel พร้อม ยัดรูปใส่ panel 
         panel1.setLayout(new GridLayout(2,1));
         panel2.setLayout(new GridLayout(2,1));
