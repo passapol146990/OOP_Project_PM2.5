@@ -14,9 +14,10 @@ public class DataBase {
     private float[][] datas = {{}};
     private int peoplemin=5000;
     private int peoplemax=5000;
-    private ShowDatas showDatas;
+    private App app;
 
-    DataBase(){
+    DataBase(App app){
+        this.app = app;
         try{
             Scanner readFile = new Scanner(new File("./database/data.txt"));
             while (readFile.hasNext()) {
@@ -99,11 +100,8 @@ public class DataBase {
                     }
                 }
             }
-            this.showDatas.setDatas();
+            this.app.getShowDatas().setDatas();
         }
-    }
-    void setShowDatasClass(ShowDatas showDatas){
-        this.showDatas = showDatas;
     }
     void setDefaultsDatas(){
         float[][] datas = {{}};

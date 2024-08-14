@@ -1,20 +1,32 @@
-File Run.java - ทำการกดรันที่ไฟล์ Run.java แล้วจะทำการรัน 
+# How to Run Program. 
+    - Run.java - ทำการกดรันที่ไฟล์ Run.java แล้วจะทำการรัน 
 
-
-
-ส่วนประกอบ
-Run.java 
+# Run.java 
     - ทำการเรียกใช้ class App จาก App.java 
     - เรียกใช้ class ที่เก็บหน้าทุกหน้า เพื่อเก็บใน App.java เวลาเปลี่ยนหน้าจะได้ง่าย โดยการใช้ app.addPanel() ในการเพิ่มหน้าต่างโปรแกรมเข้าไป
-App.java
+
+# App.java
     - class แม่ของการเปลี่ยนหน้าต่างๆ โดยทำการเก็บทุกหน้าและใช้ app.showPanel() ในการเปลี่ยนหน้า
 
-ส่วนประกอบ
-Navbar.java
+# DataBase.java
+    - class เอาไว้เก็บข้อมูลและดำเนินการต่างๆเกี่ยวกับข้อมูล
+
+# CPN_Navbar.java
     - แถบเมนูด้านบน
     - ทำงานตามคอนซักเตอร์
     - กลับหน้าหลัก,เปิดไฟล์,ฝนหลวง,ฝนธรรมชาติ
-Menu
+
+# PageMenu.java
+    - class หน้าเมนูเอาไว้กด start, about, exit
+
+# PageAbout.java
+    - class แสดงผู้พัฒนา
+    
+# PageStart.java
+    - class หน้าการทำงาน
+    
+# CPN_ButtonPink.java
+    - class ปุ่มกด
 
 
 

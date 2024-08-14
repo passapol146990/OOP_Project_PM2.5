@@ -7,21 +7,20 @@ import java.awt.*;
 import javax.swing.border.Border;
 
 class PageStart extends JPanel{
+    private App app;
     PageStart(App app){
+        this.app = app;
         setLayout(null);
     }
 
-    void setBodyStart(App app){
+    void setBodyStart(){
         removeAll();
-        DataBase db = new DataBase();
-        ShowStatusArea showStatusArea = new ShowStatusArea(app);
-        InputPeople inputPeople = new InputPeople(db);
-        ShowDatas showDatas = new ShowDatas(app,showStatusArea);
-        CPN_Navbar navbar = new CPN_Navbar(app,db,showDatas);
-        db.setShowDatasClass(showDatas);
-        showDatas.setDataBaseClass(db);
-        app.setShowDatasClass(showDatas);//ให้ทำงานเมื่อมีการกดปุ่มที่ Start
-        app.geShowDatas().setDatas();
+        ShowStatusArea showStatusArea = new ShowStatusArea(this.app);
+        InputPeople inputPeople = new InputPeople(this.app.getDataBase());
+        ShowDatas showDatas = new ShowDatas(this.app,showStatusArea);
+        CPN_Navbar navbar = new CPN_Navbar(this.app);
+        this.app.setShowDatasClass(showDatas);
+        this.app.getShowDatas().setDatas();
         add(navbar);
         add(showDatas);
         add(showStatusArea);
@@ -33,20 +32,17 @@ class ShowDatas extends JPanel{
     private boolean checkstateClickRain = false;
     public int chkstate = 0;
     private ShowStatusArea showStatusArea;
-    private DataBase db;
+    private App app;
     
-    ShowDatas(App app){}
+    ShowDatas(App app, ShowStatusArea showStatusArea){
+        this.app = app;
+        this.showStatusArea = showStatusArea;
+    }
     void setClickRainStatus(boolean chk){
         this.checkstateClickRain = chk;
     }
-    ShowDatas(App app, ShowStatusArea showStatusArea){
-        this.showStatusArea = showStatusArea;
-    }
-    void setDataBaseClass(DataBase db){
-        this.db = db;
-    }
     void setDatas(){
-        float[][] datas = this.db.getDatas();
+        float[][] datas = this.app.getDataBase().getDatas();
         About_Methods methods = new About_Methods();
         removeAll();
         setBounds(10, 50, 980, 600);
@@ -61,7 +57,7 @@ class ShowDatas extends JPanel{
                 button.setBackground(methods.getColor(methods.CaladerPerSen((float)datas[i][j])));
                 button.putClientProperty("row",i);
                 button.putClientProperty("col",j);
-                button.putClientProperty("people",db.getRandomPeople());
+                button.putClientProperty("people",this.app.getDataBase().getRandomPeople());
                 button.putClientProperty("persen",methods.CaladerPerSen((float)datas[i][j]));
                 button.addActionListener(e->{
                     JButton sourceButton = (JButton) e.getSource();
@@ -69,12 +65,12 @@ class ShowDatas extends JPanel{
                     int col = (int) sourceButton.getClientProperty("col");
                     // กดฝนหลวง
                     if(checkstateClickRain){
-                        db.rainClick(row,col);
+                        this.app.getDataBase().rainClick(row,col);
                         checkstateClickRain = false;
                     }else{
                         float persen = (float)sourceButton.getClientProperty("persen");
                         int people = (int)sourceButton.getClientProperty("people");
-                        this.showStatusArea.set_status(persen,people,this.db,row,col);
+                        this.showStatusArea.set_status(persen,people,this.app.getDataBase(),row,col);
                     }
                 });
                 rowDatas.add(button);
