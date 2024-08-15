@@ -3,7 +3,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import java.awt.*;
-import java.lang.reflect.Type;
 import javax.swing.border.Border;
 
 class PageStart extends JPanel{
@@ -182,7 +181,7 @@ class ShowStatusArea extends JPanel{
         int sick_people = (int)(people*persen)/100;
         int good_people = people-sick_people;
         float pm = (float)datas[row][col];
-        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+pm+ "<br>ประชากกรทั้งหมด"+people+" คน<br>ประชากรที่สุขภาพดี "+good_people+" คน<br>ประชากรที่ป่วย "+sick_people+" คน<br>ร้อยละคนป่วย "+formatted+"%</div></html>");
+        label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+pm+ "<br>ประชากกรทั้งหมด"+people+" คน<br>ประชากรที่สุขภาพดี "+good_people+" คน<br>ประชากรที่ป่วย "+sick_people+" คน<br>เปอร์เซ็นคนป่วย "+formatted+"%</div></html>");
         label_text_feeling.setVerticalAlignment(JLabel.CENTER);
         label_text_feeling.setHorizontalAlignment(JLabel.LEFT);
         removeAll();
@@ -206,7 +205,7 @@ class ShowStatusArea extends JPanel{
             ImageIcon icon_nothing = new ImageIcon("./image/nothing.png");
             JLabel label_nothing= new JLabel(new ImageIcon(icon_nothing.getImage().getScaledInstance(150,150,icon_nothing.getImage().SCALE_SMOOTH)));
             pic_of_feeling.add(label_nothing);
-            label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+0 + "<br>ประชากกรทั้งหมด"+0+" คน<br>ประชากรที่สุขภาพดี "+0+" คน<br>ประชากรที่ป่วย "+0+" คน<br>ร้อยละคนป่วย "+0+"%</div></html>");
+            label_text_feeling.setText("<html><div style='text-align: left;'>ปริมาณฝุ่น "+0 + "<br>ประชากกรทั้งหมด"+0+" คน<br>ประชากรที่สุขภาพดี "+0+" คน<br>ประชากรที่ป่วย "+0+" คน<br>เปอร์เซ็นคนป่วย "+0+"%</div></html>");
         }
         panel_text_feeling.add(label_text_feeling);
         add(pic_of_feeling);
@@ -280,7 +279,7 @@ class About_Methods {
     }
     float CaladerPerSen(float data){
         float persen = 0;
-        if (data<0) {
+        if (data<0||data>250) {
             persen = -1;
         }
         else if(data<=50){
@@ -288,9 +287,9 @@ class About_Methods {
         }else if(data<=100){    
             persen = (float)((float)(data-51)/(100-51))*(19-10)+10;
         }else if(data<=150){    
-            persen = (float)((float)(data-101)/(150-100))*(29-20)+20;
+            persen = (float)((float)(data-101)/(150-101))*(29-20)+20;
         }else{
-            persen = (float)((float)(data-151)/(500-101))*(100-30)+30;
+            persen = (float)((float)(data-151)/(250-151))*(50-30)+30;
         }  
         return persen;
     }

@@ -89,26 +89,22 @@ public class DataBase {
         }
     }
     void randomRain(){
-        if(this.datas.length > 1){
-            for(int i=0; i<this.datas.length; i++) {
-                for(int j=0; j<this.datas[i].length;j++){
-                    this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
-                }
+        for(int i=0; i<this.datas.length; i++) {
+            for(int j=0; j<this.datas[i].length;j++){
+                this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
             }
         }
     }
     void rainClick(int row,int col){
-        if(this.datas.length > 1){
-            this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
-            for (int i = row - 1; i <= row + 1; i++) {
-                for (int j = col - 1; j <= col + 1; j++) {
-                    if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
-                        this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
-                    }
+        this.datas[row][col] = ((int)this.datas[row][col]<=0)? 0 : this.datas[row][col]-(float)(this.datas[row][col]*0.5);
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < 10 && j >= 0 && j < 20 && !(i == row && j == col)) {
+                    this.datas[i][j] =  ((int)this.datas[i][j]<=0)? 0 : this.datas[i][j]-(float)(this.datas[i][j]*0.3);
                 }
             }
-            this.app.getShowDatas().setDatas();
         }
+        this.app.getShowDatas().setDatas();
     }
     void setDefaultsDatas(){
         float[][] datas = {{}};
