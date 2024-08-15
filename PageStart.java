@@ -145,7 +145,7 @@ class ShowStatusArea extends JPanel{
         label_text_green.setText("ตั้งแต่ 0-9%");
         JLabel label_text_grey = new JLabel();
         label_text_grey.setFont(font_guide);
-        label_text_grey.setText("เป็นฝุ่นที่ติดลบ");
+        label_text_grey.setText("เป็นฝุ่นที่ค่าผิดปกติ");
         
         // addเข้าpanel แต่ละสี
         panel_guide_red.add(color_red);
