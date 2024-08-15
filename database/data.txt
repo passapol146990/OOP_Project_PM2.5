@@ -1,1 +1,1 @@
-peoplemin=5000,peoplemax=5000,persenError=100
+peoplemin=5000,peoplemax=5000

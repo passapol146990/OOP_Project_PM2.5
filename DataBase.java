@@ -84,16 +84,16 @@ public class DataBase {
                 tempData.add(datas_row);
             }
             this.datas = tempData.toArray(new float[tempData.size()][]);
-             // สร้างวัตถุ Random
+             // สร้าง Object จากคลาส Random ชื่อว่า rand
             Random rand = new Random();
             // โอกาสเกิด noise (3%)
             double noiseChance = 0.03;
             // การเพิ่ม noise
             for (int i = 0; i <this.datas.length ; i++) {
                 for (int j = 0; j < this.datas[i].length; j++) {
-                    // สุ่มค่าเพื่อเช็คว่าควรเพิ่ม noise หรือไม่
+                    // สุ่มค่าเพื่อเช็คว่าจะให้เกิด noise หรือไม่
                     if (rand.nextDouble() < noiseChance) {
-                        // สุ่มว่าจะเพิ่มหรือลดค่า
+                        // สุ่มว่าจะเพิ่มหรือลดค่าเข้าไปในปุ่ม
                         float change = rand.nextBoolean() ? this.datas[i][j]/2 : this.datas[i][j];
                         this.datas[i][j] += change;
                     }
