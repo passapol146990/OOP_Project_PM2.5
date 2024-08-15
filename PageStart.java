@@ -245,7 +245,11 @@ class InputPeople extends JPanel{
                 JOptionPane.showMessageDialog(null,"Error: not int","Eror",JOptionPane.ERROR_MESSAGE);
             }
             else{
-            if(Integer.parseInt(inputMin.getText()) > Integer.parseInt(inputMax.getText()))
+            if(inputMin.getText().length() >= 10 || inputMax.getText().length() >=10 )
+            {
+                JOptionPane.showMessageDialog(null,"Error: People is to much ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Integer.parseInt(inputMin.getText()) > Integer.parseInt(inputMax.getText()))
             {
                 JOptionPane.showMessageDialog(null,"Error: People MIN-MAX ERROR", "Error", JOptionPane.ERROR_MESSAGE);
             }
