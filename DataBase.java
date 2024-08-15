@@ -14,6 +14,7 @@ public class DataBase {
     private float[][] datas = {{}};
     private int peoplemin=5000;
     private int peoplemax=5000;
+    private int persenError;
     private App app;
 
     DataBase(App app){
@@ -22,13 +23,16 @@ public class DataBase {
             Scanner readFile = new Scanner(new File("./database/data.txt"));
             while (readFile.hasNext()) {
                 String dataString = readFile.nextLine();
-                Pattern p = Pattern.compile("peoplemin=(\\d+),peoplemax=(\\d+)");
+                Pattern p = Pattern.compile("peoplemin=(\\d+),peoplemax=(\\d+),persenError=(\\d+)");
                 Matcher matcher = p.matcher(dataString);
                 if (matcher.find()) {
                     this.peoplemin = Integer.parseInt(matcher.group(1));
                     this.peoplemax = Integer.parseInt(matcher.group(2));
+                    this.persenError = Integer.parseInt(matcher.group(3));
                     this.peoplemin = (this.peoplemin <= 0)? 1 : this.peoplemin;
                     this.peoplemax = (this.peoplemax <= 0)? 1 : this.peoplemax;
+                    this.persenError = (this.persenError <= 0)? 0 : this.persenError;
+                    System.out.println(this.persenError);
                 }
             }
         }catch(Exception e){
@@ -63,7 +67,7 @@ public class DataBase {
         this.peoplemax = x2;
         try{
             FileWriter fw = new FileWriter("./database/data.txt");
-            fw.write("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax);
+            fw.write("peoplemin="+this.peoplemin+",peoplemax="+this.peoplemax+",persenError=0");
             fw.close();
         }catch(Exception e){}
     }
