@@ -14,7 +14,6 @@ public class DataBase {
     private float[][] datas = {{}};
     private int peoplemin=5000;
     private int peoplemax=5000;
-    private int persenError;
     private App app;
 
     DataBase(App app){
@@ -23,16 +22,14 @@ public class DataBase {
             Scanner readFile = new Scanner(new File("./database/data.txt"));
             while (readFile.hasNext()) {
                 String dataString = readFile.nextLine();
-                Pattern p = Pattern.compile("peoplemin=(\\d+),peoplemax=(\\d+),persenError=(\\d+)");
+                Pattern p = Pattern.compile("peoplemin=(\\d+),peoplemax=(\\d+)");
                 Matcher matcher = p.matcher(dataString);
                 if (matcher.find()) {
                     this.peoplemin = Integer.parseInt(matcher.group(1));
                     this.peoplemax = Integer.parseInt(matcher.group(2));
-                    this.persenError = Integer.parseInt(matcher.group(3));
                     this.peoplemin = (this.peoplemin <= 0)? 1 : this.peoplemin;
                     this.peoplemax = (this.peoplemax <= 0)? 1 : this.peoplemax;
-                    this.persenError = (this.persenError <= 0)? 0 : this.persenError;
-                    System.out.println(this.persenError);
+                    
                 }
             }
         }catch(Exception e){
@@ -87,6 +84,21 @@ public class DataBase {
                 tempData.add(datas_row);
             }
             this.datas = tempData.toArray(new float[tempData.size()][]);
+             // สร้างวัตถุ Random
+            Random rand = new Random();
+            // โอกาสเกิด noise (3%)
+            double noiseChance = 0.03;
+            // การเพิ่ม noise
+            for (int i = 0; i <this.datas.length ; i++) {
+                for (int j = 0; j < this.datas[i].length; j++) {
+                    // สุ่มค่าเพื่อเช็คว่าควรเพิ่ม noise หรือไม่
+                    if (rand.nextDouble() < noiseChance) {
+                        // สุ่มว่าจะเพิ่มหรือลดค่า
+                        float change = rand.nextBoolean() ? this.datas[i][j]/2 : this.datas[i][j];
+                        this.datas[i][j] += change;
+                    }
+                }
+            }
         } 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error: file data error", "Error", JOptionPane.ERROR_MESSAGE);
