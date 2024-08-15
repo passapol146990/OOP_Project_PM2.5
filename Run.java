@@ -9,7 +9,7 @@ public class Run {
         DataBase dataBase = new DataBase(app);
 
         app.setPageAboutClass(aboutPage);
-        app.setBodyStartClass(startPage);
+        app.setPageStartClass(startPage);
         app.setdataBaseClass(dataBase);
 
         app.addPanel(menu,"menu");

@@ -39,7 +39,7 @@ public class App extends JFrame{
     void setPageAboutClass(PageAbout pageabout){
         this.pageabout = pageabout;
     }
-    void setBodyStartClass(PageStart pagestart){
+    void setPageStartClass(PageStart pagestart){
         this.pagestart = pagestart;
     }
     void setdataBaseClass(DataBase dataBase){
