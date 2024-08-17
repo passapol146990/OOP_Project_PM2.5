@@ -287,13 +287,13 @@ class About_Methods {
             persen = -1;
         }
         else if(data<=50){
-            persen = (float)((float)(data-0)/(50-0))*(9-0)+0;
+            persen = (float)Math.random()*10+0;
         }else if(data<=100){    
-            persen = (float)((float)(data-51)/(100-51))*(19-10)+10;
+            persen = (float)Math.random()*10+10;
         }else if(data<=150){    
-            persen = (float)((float)(data-101)/(150-101))*(29-20)+20;
+            persen = (float)Math.random()*10+20;
         }else{
-            persen = (float)((float)(data-151)/(250-151))*(50-30)+30;
+            persen = (float)Math.random()*21+30;
         }  
         return persen;
     }
