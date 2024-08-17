@@ -15,5 +15,6 @@ public class Run {
         app.addPanel(menu,"menu");
         app.addPanel(startPage,"start");
         app.addPanel(aboutPage,"about");
+        //System.out.println((float)Math.random()*30+20);
     }
 }

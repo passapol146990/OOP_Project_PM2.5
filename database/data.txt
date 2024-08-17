@@ -1,1 +1,1 @@
-peoplemin=100000000,peoplemax=900000000
+peoplemin=2000,peoplemax=2000
