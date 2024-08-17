@@ -92,8 +92,7 @@ public class DataBase {
         for(int i=0; i<this.datas.length; i++) {
             for(int j=0; j<this.datas[i].length;j++){
                 if (this.datas[i][j]>=0&&this.datas[i][j]<=250){
-                this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
-
+                    this.datas[i][j] = (this.datas[i][j]-50 < 0)? 0 : this.datas[i][j]-50;
                 }
             }
         }
